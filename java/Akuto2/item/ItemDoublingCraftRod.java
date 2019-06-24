@@ -3,6 +3,7 @@ package Akuto2.item;
 import java.util.List;
 
 import Akuto2.DoublingTable;
+import Akuto2.utils.DoublingTableConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,8 +15,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class ItemDoublingCraftRod extends Item {
-	public static final String[] type = new String[] {"wood", "stone", "iron", "gold", "diamond", "emerald"};
-	public static final int[] times = new int[] {2, 4, 8, 16, 32, 64};
+	public static final String[] type = new String[] {"wood", "stone", "iron", "gold", "diamond", "emerald", "lapis", "redstone"};
+	public static final int[] times = new int[] {2, 4, 8, 16, 32, 64, 9, DoublingTableConfig.DoublingAmountRod};
 	@SideOnly(Side.CLIENT)
 	private IIcon[] iicon;
 

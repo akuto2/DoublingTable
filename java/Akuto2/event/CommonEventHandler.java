@@ -2,15 +2,24 @@ package Akuto2.event;
 
 import java.util.Random;
 
+import Akuto2.DoublingTable;
+import Akuto2.utils.DoublingTableConfig;
+import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import Akuto2.DoublingTable;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class CommonEventHandler {
+	@SubscribeEvent
+	public void onConfigChanged(OnConfigChangedEvent event) {
+		if(event.modID.equals("DoublingTable")) {
+			DoublingTableConfig.syncConfig();
+		}
+	}
+
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event){
 		World world = event.entityLiving.worldObj;

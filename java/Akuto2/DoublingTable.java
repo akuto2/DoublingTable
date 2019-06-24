@@ -23,9 +23,14 @@ import Akuto2.item.ItemExpBoost8;
 import Akuto2.item.ItemExpBoost9;
 import Akuto2.item.ItemUEXPBoost;
 import Akuto2.proxy.CommonProxy;
+import Akuto2.utils.DoublingTableConfig;
+import Akuto2.utils.ModInfo;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.Metadata;
+import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -40,10 +45,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "DoublingTable", name = "DoublingTable", version = "1.2.2", useMetadata = true)
+@Mod(modid = "DoublingTable", name = "DoublingTable", version = "1.2.4", useMetadata = true, guiFactory = "Akuto2.utils.DoublingTableGuiFactory")
 public class DoublingTable {
 	@Instance("DoublingTable")
 	public static DoublingTable instance;
+	@Metadata("DoublingTable")
+	public static ModMetadata meta;
 	@SidedProxy(clientSide = "Akuto2.proxy.ClientProxy", serverSide = "Akuto2.proxy.CommonProxy")
 	public static CommonProxy proxy;
 	public static final CreativeTabs tabDoublingTable = new CreativeTabDoublingTable("DoublingTable");
@@ -69,6 +76,8 @@ public class DoublingTable {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
+		ModInfo.registerInfo(meta);
+		DoublingTableConfig.initConfig(event);
 		doublingTable = new BlockDoublingTable().setBlockName("doublingTable").setStepSound(Block.soundTypeWood).setHardness(2.5F);
 		doublingFurnace = new BlockDoublingFurnace(false).setBlockName("doublingFurnace").setCreativeTab(tabDoublingTable);
 		doublingFurnaceOn = new BlockDoublingFurnace(true).setBlockName("doublingFurnaceOn");
@@ -108,11 +117,12 @@ public class DoublingTable {
 		GameRegistry.registerItem(uexpBoost, "uexpBoost");
 		GameRegistry.registerItem(expCore, "expCore");
 		GameRegistry.registerItem(compressedexpCore, "compressedexpCore");
-		MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
 	}
 
 	@EventHandler
 	public void load(FMLInitializationEvent event){
+		MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
+		FMLCommonHandler.instance().bus().register(new CommonEventHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		proxy.registerTileEntity();
 		GameRegistry.addRecipe(new ItemStack(doublingTable, 1, 0), "xxx", "xyx", "xxx", 'x', new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE), 'y', Blocks.crafting_table);
@@ -121,12 +131,16 @@ public class DoublingTable {
 		GameRegistry.addRecipe(new ItemStack(doublingTable, 1, 3), "xxx", "xyx", "xxx", 'x', Items.gold_ingot, 'y', new ItemStack(doublingTable, 1, 2));
 		GameRegistry.addRecipe(new ItemStack(doublingTable, 1, 4), "xxx", "xyx", "xxx", 'x', Items.diamond, 'y', new ItemStack(doublingTable, 1, 3));
 		GameRegistry.addRecipe(new ItemStack(doublingTable, 1, 5), "xxx", "xyx", "xxx", 'x', Items.emerald, 'y', new ItemStack(doublingTable, 1, 4));
+		GameRegistry.addRecipe(new ItemStack(doublingTable, 1, 6), "xxx", "xyx", "xxx", 'x', new ItemStack(Items.dye, 1, 4), 'y', new ItemStack(doublingTable, 1, 2));
+		GameRegistry.addRecipe(new ItemStack(doublingTable, 1, 7), "xxx", "xyx", "xxx", 'x', Items.redstone, 'y', new ItemStack(doublingTable, 1, 2));
 		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 0), "xxx", "xyx", "xxx", 'x', new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE), 'y', Blocks.furnace);
 		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 1), "xxx", "xyx", "xxx", 'x', Blocks.cobblestone, 'y', new ItemStack(doublingFurnace, 1, 0));
 		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 2), "xxx", "xyx", "xxx", 'x', Items.iron_ingot, 'y', new ItemStack(doublingFurnace, 1, 1));
 		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 3), "xxx", "xyx", "xxx", 'x', Items.gold_ingot, 'y', new ItemStack(doublingFurnace, 1, 2));
 		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 4), "xxx", "xyx", "xxx", 'x', Items.diamond, 'y', new ItemStack(doublingFurnace, 1, 3));
 		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 5), "xxx", "xyx", "xxx", 'x', Items.emerald, 'y', new ItemStack(doublingFurnace, 1, 4));
+		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 6), "xxx", "xyx", "xxx", 'x', new ItemStack(Items.dye, 1, 4), 'y', new ItemStack(doublingFurnace, 1, 2));
+		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 7), "xxx", "xyx", "xxx", 'x', Items.redstone, 'y', new ItemStack(doublingFurnace, 1, 2));
 		GameRegistry.addRecipe(new ItemStack(craftRod, 1), "  x", " y ", "z  ", 'x', Items.ender_pearl, 'y', Blocks.crafting_table, 'z', Items.stick);
 		GameRegistry.addRecipe(new ItemStack(doublingCraftRod, 1, 0), "wwx", "wyw", "zww", 'x', Items.ender_pearl, 'y', new ItemStack(doublingTable, 1, 0), 'z', Items.stick, 'w', new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE));
 		GameRegistry.addRecipe(new ItemStack(doublingCraftRod, 1, 1), "wwx", "wyw", "zww", 'x', Items.ender_pearl, 'y', new ItemStack(doublingTable, 1, 1), 'z', Items.stick, 'w', Blocks.cobblestone);
@@ -134,12 +148,16 @@ public class DoublingTable {
 		GameRegistry.addRecipe(new ItemStack(doublingCraftRod, 1, 3), "wwx", "wyw", "zww", 'x', Items.ender_pearl, 'y', new ItemStack(doublingTable, 1, 3), 'z', Items.stick, 'w', Items.gold_ingot);
 		GameRegistry.addRecipe(new ItemStack(doublingCraftRod, 1, 4), "wwx", "wyw", "zww", 'x', Items.ender_pearl, 'y', new ItemStack(doublingTable, 1, 4), 'z', Items.stick, 'w', Items.diamond);
 		GameRegistry.addRecipe(new ItemStack(doublingCraftRod, 1, 5), "wwx", "wyw", "zww", 'x', Items.ender_pearl, 'y', new ItemStack(doublingTable, 1, 5), 'z', Items.stick, 'w', Items.emerald);
+		GameRegistry.addRecipe(new ItemStack(doublingCraftRod, 1, 5), "wwx", "wyw", "zww", 'x', Items.ender_pearl, 'y', new ItemStack(doublingTable, 1, 2), 'z', Items.stick, 'w', new ItemStack(Items.dye, 1, 4));
+		GameRegistry.addRecipe(new ItemStack(doublingCraftRod, 1, 5), "wwx", "wyw", "zww", 'x', Items.ender_pearl, 'y', new ItemStack(doublingTable, 1, 2), 'z', Items.stick, 'w', Items.redstone);
 		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 0), " x", "y ", 'x', new ItemStack(doublingTable, 1, 0), 'y', craftRod);
 		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 1), " x", "y ", 'x', new ItemStack(doublingTable, 1, 1), 'y', new ItemStack(doublingCraftRod, 1, 0));
 		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 2), " x", "y ", 'x', new ItemStack(doublingTable, 1, 2), 'y', new ItemStack(doublingCraftRod, 1, 1));
 		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 3), " x", "y ", 'x', new ItemStack(doublingTable, 1, 3), 'y', new ItemStack(doublingCraftRod, 1, 2));
 		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 4), " x", "y ", 'x', new ItemStack(doublingTable, 1, 4), 'y', new ItemStack(doublingCraftRod, 1, 3));
 		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 5), " x", "y ", 'x', new ItemStack(doublingTable, 1, 5), 'y', new ItemStack(doublingCraftRod, 1, 4));
+		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 2), " x", "y ", 'x', new ItemStack(doublingTable, 1, 6), 'y', new ItemStack(doublingCraftRod, 1, 2));
+		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 2), " x", "y ", 'x', new ItemStack(doublingTable, 1, 7), 'y', new ItemStack(doublingCraftRod, 1, 2));
 		GameRegistry.addRecipe(new ItemStack(Items.experience_bottle, 4), "x", "y", 'x', Items.diamond, 'y', Items.glass_bottle);
 		GameRegistry.addRecipe(new ItemStack(expBoost1), "  x", " y ", "x  ", 'x', Items.experience_bottle, 'y', Items.stick);
 		GameRegistry.addRecipe(new ItemStack(expBoost2), "z x", " y ", "x z", 'x', expBoost1, 'y', Items.stick);

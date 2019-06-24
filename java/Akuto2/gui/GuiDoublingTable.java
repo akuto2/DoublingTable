@@ -31,7 +31,7 @@ public class GuiDoublingTable extends GuiContainer{
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int ppar2) {
 		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.crafting"), 28, 6, 4210752);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("containor.invantory"), 8, this.ySize - 96 + 2, 4210752);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 		this.fontRendererObj.drawString(this.magnification + "x", 120, 20, 4210752);
 	}
 

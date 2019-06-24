@@ -3,6 +3,11 @@ package Akuto2.blocks;
 import java.util.List;
 import java.util.Random;
 
+import Akuto2.DoublingTable;
+import Akuto2.tile.TileEntityDoublingFurnace;
+import Akuto2.utils.DoublingTableConfig;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -18,14 +23,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import Akuto2.DoublingTable;
-import Akuto2.tile.TileEntityDoublingFurnace;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDoublingFurnace extends BlockContainer{
-	public static final String[] type = new String[] {"wood", "stone", "iron", "gold", "diamond", "emerald"};
-	public static final int[] times = new int[] {2, 4, 8, 16, 32, 64};
+	public static final String[] type = new String[] {"wood", "stone", "iron", "gold", "diamond", "emerald", "lapis", "redstone"};
+	public static final int[] times = new int[] {2, 4, 8, 16, 32, 64, 9, DoublingTableConfig.DoublingAmountFurnace};
 	private static boolean isBurning;
 	private final boolean isBurning2;
 	public byte furnaceFacing = 0;
@@ -242,7 +243,6 @@ public class BlockDoublingFurnace extends BlockContainer{
 
 	 @SideOnly(Side.CLIENT)
 	 @Override
-	 @SuppressWarnings("unchecked")
 	 public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List arraylist) {
 		 for(int i = 0; i < type.length; ++i){
 				arraylist.add(new ItemStack(item, 1, i));

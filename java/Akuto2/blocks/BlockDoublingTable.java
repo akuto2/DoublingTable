@@ -3,6 +3,7 @@ package Akuto2.blocks;
 import java.util.List;
 
 import Akuto2.DoublingTable;
+import Akuto2.utils.DoublingTableConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockDirectional;
@@ -16,8 +17,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class BlockDoublingTable extends BlockDirectional{
-	public static final String[] type = new String[] {"wood", "stone", "iron", "gold", "diamond", "emerald"};
-	public static final int[] times = new int[] {2, 4, 8, 16, 32, 64};
+	public static final String[] type = new String[] {"wood", "stone", "iron", "gold", "diamond", "emerald", "lapis", "redstone"};
+	public static final int[] times = new int[] {2, 4, 8, 16, 32, 64, 9, DoublingTableConfig.DoublingAmountTable};
 	@SideOnly(Side.CLIENT)
 	private IIcon[] top;
 	@SideOnly(Side.CLIENT)

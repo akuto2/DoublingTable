@@ -10,9 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 
@@ -38,6 +35,7 @@ public class TileEntityDoublingFurnace extends TileEntity implements ISidedInven
 		return this.furnaceItemStacks[meta];
 	}
 
+	/*
 	@Override
 	public Packet getDescriptionPacket(){
 		NBTTagCompound nbtTagCompound = new NBTTagCompound();
@@ -49,6 +47,7 @@ public class TileEntityDoublingFurnace extends TileEntity implements ISidedInven
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		this.readFromNBT(pkt.func_148857_g());
 	}
+	*/
 
 	@Override
 	public ItemStack decrStackSize(int par1, int par2) {
@@ -108,7 +107,7 @@ public class TileEntityDoublingFurnace extends TileEntity implements ISidedInven
 		NBTTagList tagList = tagCompound.getTagList("Items", 10);
 		this.furnaceItemStacks = new ItemStack[this.getSizeInventory()];
 
-		for(int i = 0; i < tagList.tagCount(); ++i){
+		for(int i = 0; i < tagList.tagCount(); i++){
 			NBTTagCompound tagCompound1 = tagList.getCompoundTagAt(i);
 			byte byte0 = tagCompound1.getByte("Slot");
 
@@ -119,7 +118,7 @@ public class TileEntityDoublingFurnace extends TileEntity implements ISidedInven
 
 		this.furnaceBurnTime = tagCompound.getShort("BurnTime");
 		this.furnaceCookTime = tagCompound.getShort("CookTime");
-		this.currentItemBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
+		this.currentItemBurnTime = tagCompound.getShort("ItemTime");
 
 		if (tagCompound.hasKey("CustomName", 8)) {
 			this.name = tagCompound.getString("CustomName");
@@ -131,6 +130,7 @@ public class TileEntityDoublingFurnace extends TileEntity implements ISidedInven
 		super.writeToNBT(tagCompound);
 		tagCompound.setShort("BurnTime", (short)this.furnaceBurnTime);
 		tagCompound.setShort("CookTime", (short)this.furnaceCookTime);
+		tagCompound.setShort("ItemTime", (short)this.currentItemBurnTime);
 		NBTTagList tagList = new NBTTagList();
 
 		for(int i = 0; i < this.furnaceItemStacks.length; ++i){
@@ -157,7 +157,7 @@ public class TileEntityDoublingFurnace extends TileEntity implements ISidedInven
 	@SideOnly(Side.CLIENT)
 	public int getBurnTimeRemainScaled(int par1){
 		if(this.currentItemBurnTime == 0){
-			this.currentItemBurnTime = getBurnTime();
+			this.currentItemBurnTime = 200;
 		}
 
 		return this.furnaceBurnTime * par1 / this.currentItemBurnTime;
@@ -271,6 +271,12 @@ public class TileEntityDoublingFurnace extends TileEntity implements ISidedInven
 	    if (meta == 5){
 	    	return 4;
 	    }
+	    if(meta == 6) {
+	    	return 50;
+	    }
+	    if(meta == 7) {
+	    	return 10;
+	    }
 	    return 200;
 	  }
 
@@ -316,7 +322,7 @@ public class TileEntityDoublingFurnace extends TileEntity implements ISidedInven
 //			return GameRegistry.getFuelValue(par0ItemStack);
 //		}
 		int fuel = TileEntityFurnace.getItemBurnTime(par0ItemStack);
-		return fuel * getBurnTime() / 200;
+		return fuel;
 	}
 
 	public  boolean isItemFuel(ItemStack itemStack){
