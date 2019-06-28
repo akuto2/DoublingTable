@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "down": "doublingtable:blocks/doublingtable_lapis_bottom",
+        "top": "doublingtable:blocks/doublingtable_lapis_top",
+        "side": "doublingtable:blocks/doublingtable_lapis"
+    }
+}
