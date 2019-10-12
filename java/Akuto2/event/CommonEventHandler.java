@@ -7,7 +7,6 @@ import java.util.Random;
 import com.google.common.collect.Lists;
 
 import Akuto2.DoublingTable;
-import Akuto2.enchantments.DoublingTableEnchantments;
 import Akuto2.utils.DoublingTableConfig;
 import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -56,7 +55,7 @@ public class CommonEventHandler {
 		// 修繕を行う優先度は手に持っているアイテム、ヘルメット、チェストプレート、レギンス、ブーツの順
 		List<ItemStack> mendingCheckList = Lists.newArrayList(player.getHeldItem(), player.getCurrentArmor(3), player.getCurrentArmor(2), player.getCurrentArmor(1), player.getCurrentArmor(0));
 		for(int i = 0; i < mendingCheckList.size(); i++) {
-			if(EnchantmentHelper.getEnchantmentLevel(DoublingTableEnchantments.mendingID, mendingCheckList.get(i)) > 0) {
+			if(EnchantmentHelper.getEnchantmentLevel(DoublingTableConfig.mendingID, mendingCheckList.get(i)) > 0) {
 				ItemStack stack = mendingCheckList.get(i);
 				if(stack.getItemDamage() > 0) {
 					int damage = stack.getItemDamage() - event.orb.xpValue < 0 ? 0 : stack.getItemDamage() - event.orb.xpValue;
@@ -80,7 +79,7 @@ public class CommonEventHandler {
 
 			// 浮遊エンチャントの効果
 			ItemStack armor = player.getCurrentArmor(2);
-			Boolean hasFly = armor != null && (EnchantmentHelper.getEnchantmentLevel(DoublingTableEnchantments.flyID, armor) > 0);
+			Boolean hasFly = armor != null && (EnchantmentHelper.getEnchantmentLevel(DoublingTableConfig.flyID, armor) > 0);
 			if(playerWithChest.contains(key)) {
 				if(hasFly.booleanValue()) {
 					player.capabilities.allowFlying = true;

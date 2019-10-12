@@ -1,5 +1,7 @@
 package Akuto2.enchantments;
 
+import static Akuto2.utils.DoublingTableConfig.*;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 
@@ -9,9 +11,11 @@ import net.minecraft.enchantment.EnumEnchantmentType;
  *
  */
 public class DoublingTableEnchantments {
-	public static int mendingID = 100;
-	public static int flyID = 101;
+	public static Enchantment mending;
+	public static Enchantment fly;
 
-	public static Enchantment mending = new EnchantmentMending(mendingID, 1, EnumEnchantmentType.breakable);
-	public static Enchantment fly = new EnchantmentFly(flyID, 1, EnumEnchantmentType.armor_torso);
+	public static void Initialize() {
+		mending = new EnchantmentMending(mendingID, 1, EnumEnchantmentType.breakable);
+		fly = new EnchantmentFly(flyID, 1, EnumEnchantmentType.armor_torso);
+	}
 }

@@ -46,7 +46,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "DoublingTable", name = "DoublingTable", version = "1.2.4", useMetadata = true, guiFactory = "Akuto2.utils.DoublingTableGuiFactory")
+@Mod(modid = "DoublingTable", name = "DoublingTable", version = "1.2.5", useMetadata = true, guiFactory = "Akuto2.utils.DoublingTableGuiFactory")
 public class DoublingTable {
 	@Instance("DoublingTable")
 	public static DoublingTable instance;
@@ -79,6 +79,7 @@ public class DoublingTable {
 	public void preInit(FMLPreInitializationEvent event){
 		ModInfo.registerInfo(meta);
 		DoublingTableConfig.initConfig(event);
+		DoublingTableEnchantments.Initialize();
 		doublingTable = new BlockDoublingTable().setBlockName("doublingTable").setStepSound(Block.soundTypeWood).setHardness(2.5F);
 		doublingFurnace = new BlockDoublingFurnace(false).setBlockName("doublingFurnace").setCreativeTab(tabDoublingTable);
 		doublingFurnaceOn = new BlockDoublingFurnace(true).setBlockName("doublingFurnaceOn");
