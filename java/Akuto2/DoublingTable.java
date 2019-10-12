@@ -5,6 +5,7 @@ import Akuto2.blocks.BlockDoublingTable;
 import Akuto2.blocks.ItemBlockDoublingFurnace;
 import Akuto2.blocks.ItemBlockDoublingTable;
 import Akuto2.creativetab.CreativeTabDoublingTable;
+import Akuto2.enchantments.DoublingTableEnchantments;
 import Akuto2.event.CommonEventHandler;
 import Akuto2.gui.GuiHandler;
 import Akuto2.item.ItemCommpressedExpCore;
@@ -124,7 +125,13 @@ public class DoublingTable {
 		MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
 		FMLCommonHandler.instance().bus().register(new CommonEventHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		// TileEntity登録
 		proxy.registerTileEntity();
+
+		// エンチャントの追加
+		new DoublingTableEnchantments();
+
+		// レシピの追加
 		GameRegistry.addRecipe(new ItemStack(doublingTable, 1, 0), "xxx", "xyx", "xxx", 'x', new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE), 'y', Blocks.crafting_table);
 		GameRegistry.addRecipe(new ItemStack(doublingTable, 1, 1), "xxx", "xyx", "xxx", 'x', Blocks.cobblestone, 'y', new ItemStack(doublingTable, 1, 0));
 		GameRegistry.addRecipe(new ItemStack(doublingTable, 1, 2), "xxx", "xyx", "xxx", 'x', Items.iron_ingot, 'y', new ItemStack(doublingTable, 1, 1));

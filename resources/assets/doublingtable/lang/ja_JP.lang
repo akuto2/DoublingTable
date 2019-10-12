@@ -43,3 +43,6 @@ item.compressedexpCore.729.name=圧縮EXPコア x729
 item.compressedexpCore.6561.name=圧縮EXPコア x6561
 item.compressedexpCore.59049.name=圧縮EXPコア x59049
 item.compressedexpCore.531441.name=圧縮EXPコア x531441
+
+enchantment.doublingtable.mending=修繕
+enchantment.doublingtable.fly=浮遊

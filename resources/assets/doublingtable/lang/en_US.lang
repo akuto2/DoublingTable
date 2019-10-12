@@ -43,3 +43,6 @@ item.compressedexpCore.729.name=Compressed EXP Core x729
 item.compressedexpCore.6561.name=Compressed EXP Core x6561
 item.compressedexpCore.59049.name=Compressed EXP Core x59049
 item.compressedexpCore.531441.name=Compressed EXeP Core x531441
+
+enchantment.doublingtable.mending=Mending
+enchantment.doublingtable.fly=Fly
