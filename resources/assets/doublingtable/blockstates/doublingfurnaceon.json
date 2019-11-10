@@ -1,0 +1,28 @@
+{
+    "variants":{
+        "type=wood":{
+            "model": "doublingtable:DoublingFurnaceOn_wood"
+        },
+        "type=stone":{
+            "model": "doublingtable:DoublingFurnaceOn_stone"
+        },
+        "type=iron":{
+            "model": "doublingtable:DoublingFurnaceOn_iron"
+        },
+        "type=gold":{
+            "model": "doublingtable:DoublingFurnaceOn_gold"
+        },
+        "type=diamond":{
+            "model": "doublingtable:DoublingFurnaceOn_diamond"
+        },
+        "type=emerald":{
+            "model": "doublingtable:DoublingFurnaceOn_emerald"
+        },
+        "type=lapis":{
+            "model": "doublingtable:DoublingFurnaceOn_lapis"
+        },
+        "type=redstone":{
+            "model": "doublingtable:DoublingFurnaceOn_redstone"
+        }
+    }
+}

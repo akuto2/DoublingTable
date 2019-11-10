@@ -27,9 +27,9 @@ public class BlockDoublingTable extends Block {
 	public BlockDoublingTable() {
 		super(Material.WOOD);
 		setUnlocalizedName("DoublingTable");
-		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumFacilityTypes.wood));
 		setCreativeTab(DoublingTable.tabs);
-		setRegistryName("DoublingTable");
+		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumFacilityTypes.wood));
+		setRegistryName("doublingtable", "doublingtable");
 	}
 
 	@Override
@@ -62,7 +62,10 @@ public class BlockDoublingTable extends Block {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if(worldIn.isRemote) {
+			return true;
+		}
 		playerIn.openGui(DoublingTable.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
+		return true;
 	}
 }

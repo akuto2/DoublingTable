@@ -1,10 +1,13 @@
 package akuto2;
 
+import akuto2.event.CommonEventHandler;
 import akuto2.gui.GuiHandler;
 import akuto2.proxies.CommonProxy;
 import akuto2.utils.CreativeTabDoublingTable;
+import akuto2.utils.DoublingTableConfig;
 import akuto2.utils.ModInfo;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -28,12 +31,16 @@ public class DoublingTable {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ModInfo.registerInfo(meta);
-		ObjHandler.register();
+		DoublingTableConfig.initConfig(event);
+		ObjManager.register();
 		proxy.preInit();
 	}
 
 	@EventHandler
 	public void Init(FMLInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
+		ObjManager.registerTile();
+		RecipeManager.addRecipe();
 	}
 }

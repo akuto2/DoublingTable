@@ -1,6 +1,6 @@
 package akuto2.utils;
 
-import akuto2.ObjHandler;
+import akuto2.ObjManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -11,7 +11,7 @@ public class CreativeTabDoublingTable extends CreativeTabs{
 
 	@Override
 	public Item getTabIconItem() {
-		return Item.getItemFromBlock(ObjHandler.doublingTable);
+		return Item.getItemFromBlock(ObjManager.doublingTable);
 	}
 
 	@Override

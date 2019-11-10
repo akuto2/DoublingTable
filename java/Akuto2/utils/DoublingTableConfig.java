@@ -9,12 +9,17 @@ public class DoublingTableConfig {
 
 	public static void initConfig(FMLPreInitializationEvent event) {
 		config = new Configuration(event.getSuggestedConfigurationFile(), true);
-
+		syncConfig();
 	}
 
 	public static void syncConfig() {
 		redstoneAmount = config.getInt("RedstoneAmount", "Doubling", 1, 1, 100, "Set Redstone Facility Magnification", "config.doublingtable.prop.redstone");
 
 		config.save();
+		changedVale();
+	}
+
+	public static void changedVale() {
+		Utils.redstoneAmount = redstoneAmount;
 	}
 }

@@ -3,6 +3,8 @@ package akuto2.utils;
 import net.minecraft.util.IStringSerializable;
 
 public class Utils {
+	public static int redstoneAmount;
+
 	/**
 	 * 設備のmetadata、name、倍率をまとめた列挙型
 	 * @author akuto2
@@ -15,7 +17,7 @@ public class Utils {
 		diamond(4, "diamond", 32),
 		emerald(5, "emerald", 64),
 		lapis(6, "lapis", 9),
-		redstone(7, "redstone", DoublingTableConfig.redstoneAmount);
+		redstone(7, "redstone", 1);
 
 		private static EnumFacilityTypes[] types;
 		private int meta;
@@ -47,6 +49,9 @@ public class Utils {
 		}
 
 		public int getTimes() {
+			if(this == EnumFacilityTypes.redstone) {
+				return redstoneAmount;
+			}
 			return times;
 		}
 

@@ -1,0 +1,16 @@
+tile.DoublingTable.wood.name=木の倍加テーブル
+tile.DoublingTable.stone.name=石の倍加テーブル
+tile.DoublingTable.iron.name=鉄の倍加テーブル
+tile.DoublingTable.gold.name=金の倍加テーブル
+tile.DoublingTable.diamond.name=ダイヤモンドの倍加テーブル
+tile.DoublingTable.emerald.name=エメラルドの倍加テーブル
+tile.DoublingTable.lapis.name=ラピスの倍加テーブル
+tile.DoublingTable.redstone.name=レッドストーンの倍加テーブル
+tile.DoublingFurnace.wood.name=木の倍加かまど
+tile.DoublingFurnace.stone.name=石の倍加かまど
+tile.DoublingFurnace.iron.name=鉄の倍加かまど
+tile.DoublingFurnace.gold.name=金の倍加かまど
+tile.DoublingFurnace.diamond.name=ダイヤモンドの倍加かまど
+tile.DoublingFurnace.emerald.name=エメラルドの倍加かまど
+tile.DoublingFurnace.lapis.name=ラピスの倍加かまど
+tile.DoublingFurnace.redstone.name=レッドストーンの倍加かまど

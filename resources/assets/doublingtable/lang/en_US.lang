@@ -1,0 +1,16 @@
+tile.DoublingTable.wood.name=Wooden Doubling Table
+tile.DoublingTable.stone.name=Stone Doubling Table
+tile.DoublingTable.iron.name=Iron Doubling Table
+tile.DoublingTable.gold.name=Gold Doubling Table
+tile.DoublingTable.diamond.name=Diamond Doubling Table
+tile.DoublingTable.emerald.name=Emerald Doubling Table
+tile.DoublingTable.lapis.name=Lapis Doubling Table
+tile.DoublingTable.redstone.name=Redstone Doubling Table
+tile.DoublingFurnace.wood.name=Wooden Doubling Furnace
+tile.DoublingFurnace.stone.name=Stone Doubling Furnace
+tile.DoublingFurnace.iron.name=Iron Doubling Furnace
+tile.DoublingFurnace.gold.name=Gold Doubling Furnace
+tile.DoublingFurnace.diamond.name=Diamond Doubling Furnace
+tile.DoublingFurnace.emerald.name=Emerald Doubling Furnace
+tile.DoublingFurnace.lapis.name=Lapis Doubling Furnace
+tile.DoublingFurnace.redstone.name=Redstone Doubling Furnace
