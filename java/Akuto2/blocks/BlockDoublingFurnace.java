@@ -1,6 +1,7 @@
 package akuto2.blocks;
 
 import java.util.List;
+import java.util.Random;
 
 import akuto2.DoublingTable;
 import akuto2.ObjManager;
@@ -16,6 +17,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -34,6 +36,11 @@ public class BlockDoublingFurnace extends BlockContainer{
 		super(Material.ROCK);
 		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumFacilityTypes.wood));
 		this.isActive = isActive;
+	}
+
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return Item.getItemFromBlock(ObjManager.doublingFurnace);
 	}
 
 	@Override
@@ -98,8 +105,15 @@ public class BlockDoublingFurnace extends BlockContainer{
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		if(!isBurning) {
+			TileEntity tile = worldIn.getTileEntity(pos);
 
+			if(tile instanceof TileEntityDoublingFurnace) {
+				InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityDoublingFurnace)tile);
+				worldIn.updateComparatorOutputLevel(pos, this);
+			}
 		}
+
+		super.breakBlock(worldIn, pos, state);
 	}
 
 	@Override

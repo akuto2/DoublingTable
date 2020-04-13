@@ -64,7 +64,7 @@ public class ContainerDoublingFurnace extends Container{
 				listener.sendProgressBarUpdate(this, 0, tileEntity.getField(0));
 			}
 			if(lastItemBurnTime != tileEntity.getField(1)) {
-				listener.sendProgressBarUpdate(this, 0, tileEntity.getField(1));
+				listener.sendProgressBarUpdate(this, 1, tileEntity.getField(1));
 			}
 			if(totalCookTime != tileEntity.getField(3)) {
 				listener.sendProgressBarUpdate(this, 3, tileEntity.getField(3));
