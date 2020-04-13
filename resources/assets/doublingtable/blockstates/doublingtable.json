@@ -1,0 +1,28 @@
+{
+    "variants":{
+        "type=wood":{
+            "model":"doublingtable:doublingtable_wood"
+        },
+        "type=stone":{
+            "model":"doublingtable:doublingtable_stone"
+        },
+        "type=iron":{
+            "model":"doublingtable:doublingtable_iron"
+        },
+        "type=gold":{
+            "model":"doublingtable:doublingtable_gold"
+        },
+        "type=diamond":{
+            "model":"doublingtable:doublingtable_diamond"
+        },
+        "type=emerald":{
+            "model":"doublingtable:doublingtable_emerald"
+        },
+        "type=lapis":{
+            "model":"doublingtable:doublingtable_lapis"
+        },
+        "type=redstone":{
+            "model":"doublingtable:doublingtable_redstone"
+        }
+    }
+}

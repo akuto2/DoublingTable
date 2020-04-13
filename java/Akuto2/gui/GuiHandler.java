@@ -1,56 +1,38 @@
-package Akuto2.gui;
+package Akuto2.Gui;
 
-import net.minecraft.client.gui.inventory.GuiCrafting;
+import Akuto2.Blocks.BlockDoublingTable;
+import Akuto2.Tiles.TileEntityDoublingFurnace;
+import Akuto2.Utils.EnumUtils.EnumFacilityTypes;
+import Akuto2.Utils.Utils;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import Akuto2.blocks.BlockDoublingFurnace;
-import Akuto2.blocks.BlockDoublingTable;
-import Akuto2.item.ItemDoublingCraftRod;
-import Akuto2.tile.TileEntityDoublingFurnace;
-import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 
-public class GuiHandler implements IGuiHandler {
+public class GuiHandler implements IGuiHandler{
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		TileEntity tileentity = world.getTileEntity(x, y, z);
-		if(!world.blockExists(x, y, z)){
-			return null;
+		BlockPos pos = new BlockPos(x, y, z);
+
+		if(ID == Utils.GUI_DOUBLINGTABLE_ID) {
+			return new ContainerDoublingTable(player.inventory, world, pos, ((EnumFacilityTypes)world.getBlockState(pos).getValue(BlockDoublingTable.TYPE)).getTimes());
 		}
-		if(ID == 0){
-			return new ContainerDoublingTable(player.inventory, world, x, y, z, BlockDoublingTable.times[world.getBlockMetadata(x, y, z)]);
-		}
-		if(ID == 1){
-			return new ContainerDoublingFurnace(player.inventory, (TileEntityDoublingFurnace) tileentity, BlockDoublingFurnace.times[world.getBlockMetadata(x, y, z)]);
-		}
-		if(ID == 2){
-			return new ContainerCraftRod(player.inventory, world, x, y, z);
-		}
-		if(ID == 3){
-			return new ContainerDoublingCraftRod(player.inventory, world, x, y, z, ItemDoublingCraftRod.times[player.getHeldItem().getItemDamage()]);
+		if(ID == Utils.GUI_DOUBLINGFURNACE_ID) {
+			return new ContainerDoublingFurnace(player.inventory, (TileEntityDoublingFurnace)world.getTileEntity(pos), ((EnumFacilityTypes)world.getBlockState(pos).getValue(BlockDoublingTable.TYPE)).getTimes());
 		}
 		return null;
 	}
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		TileEntity tileentity = world.getTileEntity(x, y, z);
-		if(!world.blockExists(x, y, z)){
-			return null;
+		BlockPos pos = new BlockPos(x, y, z);
+
+		if(ID == Utils.GUI_DOUBLINGTABLE_ID) {
+			return new GuiDoublingTable(player.inventory, world, pos, ((EnumFacilityTypes)world.getBlockState(pos).getValue(BlockDoublingTable.TYPE)).getTimes());
 		}
-		if(ID == 0){
-			return new GuiDoublingTable(player.inventory, world, x, y, z, BlockDoublingTable.times[world.getBlockMetadata(x, y, z)]);
-		}
-		if(ID == 1){
-			return new GuiDoublingFurnace(player.inventory, (TileEntityDoublingFurnace)tileentity, BlockDoublingFurnace.times[world.getBlockMetadata(x, y, z)]);
-		}
-		if(ID == 2){
-			return new GuiCrafting(player.inventory, world, x, y, z);
-		}
-		if(ID == 3){
-			return new GuiDoublingTable(player.inventory, world, x, y, z, ItemDoublingCraftRod.times[player.getHeldItem().getItemDamage()]);
+		if(ID == Utils.GUI_DOUBLINGFURNACE_ID) {
+			return new GuiDoublingFurnace(player.inventory, (TileEntityDoublingFurnace)world.getTileEntity(pos), ((EnumFacilityTypes)world.getBlockState(pos).getValue(BlockDoublingTable.TYPE)).getTimes());
 		}
 		return null;
 	}
-
 }

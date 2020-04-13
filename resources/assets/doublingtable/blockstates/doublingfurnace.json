@@ -1,0 +1,28 @@
+{
+    "variants":{
+        "type=wood":{
+            "model":"doublingtable:doublingfurnace_wood"
+        },
+        "type=stone":{
+            "model":"doublingtable:doublingfurnace_stone"
+        },
+        "type=iron":{
+            "model":"doublingtable:doublingfurnace_iron"
+        },
+        "type=gold":{
+            "model":"doublingtable:doublingfurnace_gold"
+        },
+        "type=diamond":{
+            "model":"doublingtable:doublingfurnace_diamond"
+        },
+        "type=emerald":{
+            "model":"doublingtable:doublingfurnace_emerald"
+        },
+        "type=lapis":{
+            "model":"doublingtable:doublingfurnace_lapis"
+        },
+        "type=redstone":{
+            "model":"doublingtable:doublingfurnace_redstone"
+        }
+    }
+}

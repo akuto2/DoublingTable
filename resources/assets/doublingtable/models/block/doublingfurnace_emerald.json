@@ -1,0 +1,7 @@
+{
+    "parent":"block/cube_top",
+    "textures":{
+        "top":"doublingtable:blocks/doublingfurnace_emerald_front_off",
+        "side":"doublingtable:blocks/doublingfurnace_emerald"
+    }
+}

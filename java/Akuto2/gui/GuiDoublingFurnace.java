@@ -1,55 +1,57 @@
-package Akuto2.gui;
-
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+package Akuto2.Gui;
 
 import org.lwjgl.opengl.GL11;
 
-import Akuto2.tile.TileEntityDoublingFurnace;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import Akuto2.Tiles.TileEntityDoublingFurnace;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiDoublingFurnace extends GuiContainer{
-	private TileEntityDoublingFurnace tileentity;
-	private static final ResourceLocation GUITEXTURE = new ResourceLocation("textures/gui/container/furnace.png");
+	private TileEntityDoublingFurnace tile;
+	private final ResourceLocation TEXTURE = new ResourceLocation("textures/gui/container/furnace.png");
 	private int magnification;
 
-	public GuiDoublingFurnace(InventoryPlayer player, TileEntityDoublingFurnace tileentity2, int par3) {
-		super(new ContainerDoublingFurnace(player, tileentity2, par3));
-		this.tileentity = tileentity2;
-		this.magnification = par3;
+	public GuiDoublingFurnace(InventoryPlayer player, TileEntityDoublingFurnace tile, int type) {
+		super(new ContainerDoublingFurnace(player, tile, type));
+		this.tile = tile;
+		magnification = type;
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2)
-	{
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.furnace"), 28, 6, 4210752);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("containor.invantory"), 8, this.ySize - 96 + 2, 4210752);
-		this.fontRendererObj.drawString(this.magnification + "x", 120, 20, 4210752);
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTicks);
+		renderHoveredToolTip(mouseX, mouseY);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
-	{
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		fontRenderer.drawString(I18n.format("container.furnace", new Object[0]), 28, 6, 4210752);
+		fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, ySize - 96 + 2, 4210752);
+		fontRenderer.drawString(magnification + "x", 120, 20, 4210752);
+	}
+
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-		this.mc.getTextureManager().bindTexture(GUITEXTURE);
+		mc.getTextureManager().bindTexture(TEXTURE);
 
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-		int i1;
+		int k = (width - xSize) / 2;
+		int l = (height - ySize) / 2;
+		drawTexturedModalRect(k, l, 0, 0, xSize, ySize);
+		int i;
 
-		if (this.tileentity.isBurning())
-		{
-			i1 = this.tileentity.getBurnTimeRemainScaled(12);
-			this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+		if(tile.isBurning()) {
+			i = tile.getBurnTimeRemainScaled(12);
+			drawTexturedModalRect(k + 56, l + 36 + 12 - i, 176, 12 - i, 14, i + 2);
 		}
-		i1 = this.tileentity.getCookProgressScaled(24);
-		this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
+		i = tile.getCookProgressScaled(24);
+		drawTexturedModalRect(k + 79, l + 34, 176, 14, i + 1, 16);
 	}
-
 }

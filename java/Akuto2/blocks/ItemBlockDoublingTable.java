@@ -1,33 +1,33 @@
-package Akuto2.blocks;
+package Akuto2.Blocks;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import Akuto2.Utils.EnumUtils.EnumFacilityTypes;
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemBlockDoublingTable extends ItemBlock{
-	public ItemBlockDoublingTable(Block par1Block){
-		super(par1Block);
-		this.setMaxDamage(0);
-		this.setHasSubtypes(true);
+	public ItemBlockDoublingTable(Block block) {
+		super(block);
+		setMaxDamage(0);
+		setHasSubtypes(true);
 	}
 
 	@Override
-	public int getMetadata(int par1){
-		return par1;
+	public int getMetadata(int damage) {
+		return damage;
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack){
-		return super.getUnlocalizedName() + "." + BlockDoublingTable.type[par1ItemStack.getItemDamage()];
+	public String getUnlocalizedName(ItemStack stack) {
+		return super.getUnlocalizedName() + "." + EnumFacilityTypes.fromMeta(stack.getMetadata()).getName();
 	}
 
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4){
-		par3List.add(BlockDoublingTable.times[par1ItemStack.getItemDamage()] + "x");
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(EnumFacilityTypes.fromMeta(stack.getMetadata()).getTimes() + "x");
 	}
 }

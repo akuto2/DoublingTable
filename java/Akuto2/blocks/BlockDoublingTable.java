@@ -1,81 +1,69 @@
-package Akuto2.blocks;
-
-import java.util.List;
+package Akuto2.Blocks;
 
 import Akuto2.DoublingTable;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.BlockDirectional;
+import Akuto2.Utils.EnumUtils.EnumFacilityTypes;
+import Akuto2.Utils.Utils;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockDoublingTable extends BlockDirectional{
-	public static final String[] type = new String[] {"wood", "stone", "iron", "gold", "diamond", "emerald"};
-	public static final int[] times = new int[] {2, 4, 8, 16, 32, 64};
-	@SideOnly(Side.CLIENT)
-	private IIcon[] top;
-	@SideOnly(Side.CLIENT)
-	private IIcon[] side;
-	@SideOnly(Side.CLIENT)
-	private IIcon[] bottom;
+public class BlockDoublingTable extends Block {
+	public static final PropertyEnum<EnumFacilityTypes> TYPE = PropertyEnum.create("type", EnumFacilityTypes.class);
 
-	public BlockDoublingTable(){
-		super(Material.wood);
-		this.setCreativeTab(DoublingTable.tabDoublingTable);
+	public BlockDoublingTable() {
+		super(Material.WOOD);
+		setCreativeTab(DoublingTable.tabs);
+		setUnlocalizedName("doublingTable");
+		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumFacilityTypes.wood));
+		setRegistryName("doublingtable", "doublingtable");
+	}
+
+	@Override
+	public int damageDropped(IBlockState state) {
+		return ((EnumFacilityTypes)state.getValue(TYPE)).getMeta();
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return ((EnumFacilityTypes)state.getValue(TYPE)).getMeta();
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return getDefaultState().withProperty(TYPE, EnumFacilityTypes.fromMeta(meta));
+	}
+
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
 
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int par1, int par2){
-		if(par1 == 0){
-			return bottom[par2];
-		}
-		else if (par1 == 1){
-			return top[par2];
-		}
-		else{
-			return side[par2];
+	@Override
+	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+		for(EnumFacilityTypes type : EnumFacilityTypes.values()) {
+			items.add(new ItemStack(this, 1, type.getMeta()));
 		}
 	}
 
 	@Override
-	public int damageDropped(int meta) {
-		return meta;
-	}
-
-	@Override
-	public boolean onBlockActivated(World world, int posX, int posY, int posZ, EntityPlayer entityplayer, int par6, float par7, float par8, float par9) {
-		entityplayer.openGui(DoublingTable.instance, 0, world, posX, posY, posZ);
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if(!worldIn.isRemote) {
+			playerIn.openGui(DoublingTable.instance, Utils.GUI_DOUBLINGTABLE_ID, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		}
 		return true;
 	}
-
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    @SuppressWarnings("unchecked")
-	public void getSubBlocks(Item par1Item, CreativeTabs par2CreativeTabs, List par3List){
-		for(int i = 0; i < type.length; ++i){
-			par3List.add(new ItemStack(par1Item, 1, i));
-		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerBlockIcons(IIconRegister par1IIconRegister){
-		this.top = new IIcon[type.length];
-		this.side = new IIcon[type.length];
-		this.bottom = new IIcon[type.length];
-
-		for(int i = 0; i < type.length; i++){
-			this.side[i] = par1IIconRegister.registerIcon("doublingtable:doublingtable_" + type[i]);
-			this.top[i] = par1IIconRegister.registerIcon("doublingtable:doublingtable_" + type[i] + "_top");
-			this.bottom[i] = par1IIconRegister.registerIcon("doublingtable:doublingtable_" + type[i] + "_bottom");
-		}
-	}
-
 }

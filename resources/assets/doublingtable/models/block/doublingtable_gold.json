@@ -1,0 +1,8 @@
+{
+    "parent":"block/cube_bottom_top",
+    "textures":{
+        "down":"doublingtable:blocks/doublingtable_gold_bottom",
+        "top":"doublingtable:blocks/doublingtable_gold_top",
+        "side":"doublingtable:blocks/doublingtable_gold"
+    }
+}

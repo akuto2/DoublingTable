@@ -1,0 +1,23 @@
+[
+    {
+        "name": "WOODPLANK",
+        "ingredient":{
+            "type": "forge:ore_dict",
+            "ore": "plankWood"
+        }
+    },
+    {
+        "name": "COBBLESTONE",
+        "ingredient":{
+            "type": "forge:ore_dict",
+            "ore": "cobblestone"
+        }
+    },
+    {
+        "name": "GEMDIAMOND",
+        "ingredient":{
+            "type": "forge:ore_dict",
+            "ore": "gemDiamond"
+        }
+    }
+]
