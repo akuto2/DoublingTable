@@ -14,10 +14,45 @@
         }
     },
     {
+        "name": "IRONINGOT",
+        "ingredient":{
+            "type": "forge:ore_dict",
+            "ore": "ingotIron"
+        }
+    },
+    {
+        "name": "GOLDINGOT",
+        "ingredient":{
+            "type": "forge:ore_dict",
+            "ore": "ingotGold"
+        }
+    },
+    {
         "name": "GEMDIAMOND",
         "ingredient":{
             "type": "forge:ore_dict",
             "ore": "gemDiamond"
+        }
+    },
+    {
+        "name": "GEMEMERALD",
+        "ingredient":{
+            "type": "forge:ore_dict",
+            "ore": "gemEmerald"
+        }
+    },
+    {
+        "name": "GEMLAPIS",
+        "ingredient":{
+            "type": "forge:ore_dict",
+            "ore": "gemLapis"
+        }
+    },
+    {
+        "name": "REDSTONEDUST",
+        "ingredient":{
+            "type": "forge:ore_dict",
+            "ore": "dustRedstone"
         }
     }
 ]

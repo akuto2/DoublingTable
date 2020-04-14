@@ -1,0 +1,21 @@
+{
+    "result":{
+        "item":"doublingtable:doublingfurnace",
+        "data":4
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "DDD",
+        "DCD",
+        "DDD"
+    ],
+    "key":{
+        "D":{
+            "item":"#GEMDIAMOND"
+        },
+        "C":{
+            "item":"doublingtable:doublingfurnace",
+            "data":3
+        }
+    }
+}

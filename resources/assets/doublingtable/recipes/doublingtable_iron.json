@@ -1,0 +1,21 @@
+{
+    "result":{
+        "item":"doublingtable:doublingtable",
+        "data":2
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "III",
+        "ICI",
+        "III"
+    ],
+    "key":{
+        "I":{
+            "item":"#IRONINGOT"
+        },
+        "C":{
+            "item":"doublingtable:doublingtable",
+            "data":1
+        }
+    }
+}

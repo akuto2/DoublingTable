@@ -24,8 +24,8 @@ public class ObjManager {
 	public static void registerBlock(Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		doublingTable = new BlockDoublingTable();
-		doublingFurnace = new BlockDoublingFurnace(false).setRegistryName("doublingtable", "doublingfurnace").setUnlocalizedName("DoublingFurnace").setCreativeTab(DoublingTable.tabs);
-		doublingFurnace_On = new BlockDoublingFurnace(true).setRegistryName("doublingtable", "doublingfurnaceon").setUnlocalizedName("DoublingFurnaceOn");
+		doublingFurnace = new BlockDoublingFurnace(false).setRegistryName("doublingtable", "doublingfurnace").setUnlocalizedName("doublingFurnace").setCreativeTab(DoublingTable.tabs);
+		doublingFurnace_On = new BlockDoublingFurnace(true).setRegistryName("doublingtable", "doublingfurnaceon").setUnlocalizedName("doublingFurnaceOn");
 
 		registry.register(doublingTable);
 		registry.register(doublingFurnace);

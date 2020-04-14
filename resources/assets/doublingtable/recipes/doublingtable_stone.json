@@ -1,0 +1,21 @@
+{
+    "result":{
+        "item":"doublingtable:doublingtable",
+        "data":1
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "SSS",
+        "SCS",
+        "SSS"
+    ],
+    "key":{
+        "S":{
+            "item":"#COBBLESTONE"
+        },
+        "C":{
+            "item":"doublingtable:doublingtable",
+            "data":0
+        }
+    }
+}

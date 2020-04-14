@@ -1,0 +1,21 @@
+{
+    "result":{
+        "item":"doublingtable:doublingfurnace",
+        "data":5
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "EEE",
+        "ECE",
+        "EEE"
+    ],
+    "key":{
+        "E":{
+            "item":"#GEMEMERALD"
+        },
+        "C":{
+            "item":"doublingtable:doublingfurnace",
+            "data":4
+        }
+    }
+}
