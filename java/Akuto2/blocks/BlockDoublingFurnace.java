@@ -33,6 +33,7 @@ public class BlockDoublingFurnace extends BlockContainer {
 
 	public BlockDoublingFurnace(boolean isActive) {
 		super(Material.ROCK);
+		setHardness(5.0F);
 		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumFacilityTypes.wood));
 		this.isActive = isActive;
 	}

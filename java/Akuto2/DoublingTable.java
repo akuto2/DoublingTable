@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-@Mod(modid = "doublingtable", name = "DoublingTable", version = "3.0.0", guiFactory = "Akuto2.Utils.DoublingTableGuiFactory")
+@Mod(modid = "doublingtable", name = "DoublingTable", version = "3.0.1", guiFactory = "Akuto2.Utils.DoublingTableGuiFactory")
 @Mod.EventBusSubscriber(modid = "doublingtable")
 public class DoublingTable {
 	@Instance("doublingtable")
