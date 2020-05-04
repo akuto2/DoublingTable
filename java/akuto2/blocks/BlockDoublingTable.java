@@ -26,6 +26,7 @@ public class BlockDoublingTable extends Block {
 
 	public BlockDoublingTable() {
 		super(Material.WOOD);
+		setHardness(2.5F);
 		setUnlocalizedName("DoublingTable");
 		setCreativeTab(DoublingTable.tabs);
 		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumFacilityTypes.wood));
