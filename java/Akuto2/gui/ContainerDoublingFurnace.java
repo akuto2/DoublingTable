@@ -88,7 +88,7 @@ public class ContainerDoublingFurnace extends Container{
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-		ItemStack stack = null;
+		ItemStack stack = ItemStack.EMPTY;
 		Slot slot = (Slot)inventorySlots.get(index);
 
 		if(slot != null && slot.getHasStack()) {
