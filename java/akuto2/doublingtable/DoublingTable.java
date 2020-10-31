@@ -1,10 +1,10 @@
-package Akuto2;
+package akuto2.doublingtable;
 
-import Akuto2.Gui.GuiHandler;
-import Akuto2.Proxies.CommonProxy;
-import Akuto2.Utils.CreativeTabDoublingTable;
-import Akuto2.Utils.DoublingTableConfig;
-import Akuto2.Utils.ModInfo;
+import akuto2.doublingtable.gui.GuiHandler;
+import akuto2.doublingtable.proxies.CommonProxy;
+import akuto2.doublingtable.utils.CreativeTabDoublingTable;
+import akuto2.doublingtable.utils.DoublingTableConfig;
+import akuto2.doublingtable.utils.ModInfo;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

@@ -1,10 +1,10 @@
-package Akuto2;
+package akuto2.doublingtable;
 
-import Akuto2.Blocks.BlockDoublingFurnace;
-import Akuto2.Blocks.BlockDoublingTable;
-import Akuto2.Blocks.ItemBlockDoublingFurnace;
-import Akuto2.Blocks.ItemBlockDoublingTable;
-import Akuto2.Tiles.TileEntityDoublingFurnace;
+import akuto2.doublingtable.blocks.BlockDoublingFurnace;
+import akuto2.doublingtable.blocks.BlockDoublingTable;
+import akuto2.doublingtable.blocks.ItemBlockDoublingFurnace;
+import akuto2.doublingtable.blocks.ItemBlockDoublingTable;
+import akuto2.doublingtable.tiles.TileEntityDoublingFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;

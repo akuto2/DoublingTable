@@ -1,4 +1,4 @@
-package Akuto2.Utils;
+package akuto2.doublingtable.utils;
 
 import java.util.List;
 import java.util.Set;

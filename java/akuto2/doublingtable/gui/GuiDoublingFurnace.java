@@ -1,8 +1,8 @@
-package Akuto2.Gui;
+package akuto2.doublingtable.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import Akuto2.Tiles.TileEntityDoublingFurnace;
+import akuto2.doublingtable.tiles.TileEntityDoublingFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;

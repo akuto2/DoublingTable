@@ -1,6 +1,6 @@
-package Akuto2.Utils;
+package akuto2.doublingtable.utils;
 
-import Akuto2.ObjManager;
+import akuto2.doublingtable.ObjManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 

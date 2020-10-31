@@ -1,16 +1,16 @@
-package Akuto2.Blocks;
+package akuto2.doublingtable.blocks;
 
 import java.util.List;
 
-import Akuto2.Utils.EnumUtils.EnumFacilityTypes;
+import akuto2.doublingtable.utils.EnumUtils.EnumFacilityTypes;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemBlockDoublingTable extends ItemBlock{
-	public ItemBlockDoublingTable(Block block) {
+public class ItemBlockDoublingFurnace extends ItemBlock{
+	public ItemBlockDoublingFurnace(Block block) {
 		super(block);
 		setMaxDamage(0);
 		setHasSubtypes(true);
@@ -23,7 +23,7 @@ public class ItemBlockDoublingTable extends ItemBlock{
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName() + "." + EnumFacilityTypes.fromMeta(stack.getMetadata()).getName();
+		return super.getUnlocalizedName(stack) + "." + EnumFacilityTypes.fromMeta(stack.getMetadata()).getName();
 	}
 
 	@Override

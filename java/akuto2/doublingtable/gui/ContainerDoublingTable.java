@@ -1,4 +1,4 @@
-package Akuto2.Gui;
+package akuto2.doublingtable.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

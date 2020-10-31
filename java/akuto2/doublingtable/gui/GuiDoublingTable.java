@@ -1,4 +1,4 @@
-package Akuto2.Gui;
+package akuto2.doublingtable.gui;
 
 import net.minecraft.client.gui.inventory.GuiCrafting;
 import net.minecraft.client.resources.I18n;

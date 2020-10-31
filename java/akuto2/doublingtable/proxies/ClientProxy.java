@@ -1,7 +1,7 @@
-package Akuto2.Proxies;
+package akuto2.doublingtable.proxies;
 
-import Akuto2.ObjManager;
-import Akuto2.Utils.EnumUtils.EnumFacilityTypes;
+import akuto2.doublingtable.ObjManager;
+import akuto2.doublingtable.utils.EnumUtils.EnumFacilityTypes;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;

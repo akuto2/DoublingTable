@@ -1,6 +1,6 @@
-package Akuto2.Events;
+package akuto2.doublingtable.events;
 
-import Akuto2.Utils.DoublingTableConfig;
+import akuto2.doublingtable.utils.DoublingTableConfig;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

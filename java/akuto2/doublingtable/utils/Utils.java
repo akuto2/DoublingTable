@@ -1,4 +1,4 @@
-package Akuto2.Utils;
+package akuto2.doublingtable.utils;
 
 public class Utils {
 	public static int redstoneAmount;

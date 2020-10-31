@@ -1,4 +1,4 @@
-package Akuto2.Proxies;
+package akuto2.doublingtable.proxies;
 
 import net.minecraft.world.World;
 

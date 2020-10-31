@@ -1,9 +1,9 @@
-package Akuto2.Gui;
+package akuto2.doublingtable.gui;
 
-import Akuto2.Blocks.BlockDoublingTable;
-import Akuto2.Tiles.TileEntityDoublingFurnace;
-import Akuto2.Utils.EnumUtils.EnumFacilityTypes;
-import Akuto2.Utils.Utils;
+import akuto2.doublingtable.blocks.BlockDoublingTable;
+import akuto2.doublingtable.tiles.TileEntityDoublingFurnace;
+import akuto2.doublingtable.utils.EnumUtils.EnumFacilityTypes;
+import akuto2.doublingtable.utils.Utils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

@@ -1,7 +1,7 @@
-package Akuto2.Tiles;
+package akuto2.doublingtable.tiles;
 
-import Akuto2.Blocks.BlockDoublingFurnace;
-import Akuto2.Utils.EnumUtils.EnumFacilityTypes;
+import akuto2.doublingtable.blocks.BlockDoublingFurnace;
+import akuto2.doublingtable.utils.EnumUtils.EnumFacilityTypes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
