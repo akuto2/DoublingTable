@@ -17,13 +17,8 @@ public class ItemUEXPBoost extends Item {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player){
-		int dmg = item.getItemDamage();
-		if(dmg == 10){
-			player.inventory.addItemStackToInventory(new ItemStack(Blocks.air));
-		}
 		if(item != null && item.getItem() == this){
 			player.addExperienceLevel(upLevel);
-			item.damageItem(1, player);;
 		}
 		return item;
 	}
