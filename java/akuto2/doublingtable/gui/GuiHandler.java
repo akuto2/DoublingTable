@@ -1,5 +1,6 @@
 package akuto2.doublingtable.gui;
 
+import akuto2.doublingtable.ObjManager;
 import akuto2.doublingtable.blocks.BlockDoublingTable;
 import akuto2.doublingtable.tiles.TileEntityDoublingFurnace;
 import akuto2.doublingtable.utils.Utils;
@@ -25,7 +26,10 @@ public class GuiHandler implements IGuiHandler{
 			return new ContainerCraftRod(player.inventory, world, pos);
 		}
 		if(ID == Utils.GUI_DOUBLINGCRAFTROD_ID) {
-			return new ContainerDoublingCraftRod(player.inventory, world, pos, EnumFacilityTypes.fromMeta(player.getHeldItemMainhand().getItemDamage()).getTimes());
+			if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ObjManager.doublingCraftRod)
+				return new ContainerDoublingCraftRod(player.inventory, world, pos, EnumFacilityTypes.fromMeta(player.getHeldItemMainhand().getItemDamage()).getTimes());
+			else if(player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() == ObjManager.doublingCraftRod)
+				return new ContainerDoublingCraftRod(player.inventory, world, pos, EnumFacilityTypes.fromMeta(player.getHeldItemOffhand().getItemDamage()).getTimes());
 		}
 		return null;
 	}
@@ -44,7 +48,10 @@ public class GuiHandler implements IGuiHandler{
 			return new GuiCrafting(player.inventory, world, pos);
 		}
 		if(ID == Utils.GUI_DOUBLINGCRAFTROD_ID) {
-			return new GuiDoublingTable(player.inventory, world, pos, EnumFacilityTypes.fromMeta(player.getHeldItemMainhand().getItemDamage()).getTimes());
+			if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ObjManager.doublingCraftRod)
+				return new GuiDoublingTable(player.inventory, world, pos, EnumFacilityTypes.fromMeta(player.getHeldItemMainhand().getItemDamage()).getTimes());
+			else if(player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() == ObjManager.doublingCraftRod)
+				return new GuiDoublingTable(player.inventory, world, pos, EnumFacilityTypes.fromMeta(player.getHeldItemOffhand().getItemDamage()).getTimes());
 		}
 		return null;
 	}
