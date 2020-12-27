@@ -80,6 +80,13 @@ public class Utils {
 		private int num;
 		private int times;
 
+		static {
+			types = new EnumExpBoostTypes[values().length];
+			for(EnumExpBoostTypes type : values()) {
+				types[type.getNum() - 1] = type;
+			}
+		}
+
 		private EnumExpBoostTypes(int num, int times) {
 			this.num = num;
 			this.times = times;
