@@ -1,0 +1,23 @@
+{
+    "result":{
+        "item":"doublingtable:expboost3"
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "Z X",
+        " Y ",
+        "X Z"
+    ],
+    "key":{
+        "X":{
+            "item":"doublingtable:expboost2"
+        },
+        "Y":{
+            "item":"minecraft:coal_block"
+        },
+        "Z":{
+            "item":"minecraft:coal",
+            "data":0
+        }
+    }
+}

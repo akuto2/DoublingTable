@@ -59,4 +59,42 @@ public class EnumUtils {
 			return name;
 		}
 	}
+
+	public static enum EnumExpBoostTypes{
+		x1(1, 1),
+		x2(2, 2),
+		x4(3, 4),
+		x8(4, 8),
+		x16(5, 16),
+		x32(6, 32),
+		x64(7, 64),
+		x128(8, 128),
+		x256(9, 256),
+		x512(10, 512),
+		x1024(11, 1024);
+
+		private static EnumExpBoostTypes[] types;
+		private int num;
+		private int times;
+
+		static {
+			types = new EnumExpBoostTypes[values().length];
+			for(EnumExpBoostTypes type : values()) {
+				types[type.getNum() - 1] = type;
+			}
+		}
+
+		private EnumExpBoostTypes(int num, int times) {
+			this.num = num;
+			this.times = times;
+		}
+
+		public int getNum() {
+			return num;
+		}
+
+		public int getTimes() {
+			return times;
+		}
+	}
 }

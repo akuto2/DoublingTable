@@ -1,0 +1,19 @@
+{
+    "result":{
+        "item":"minecraft:experience_bottle",
+        "count":4
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "D",
+        "G"
+    ],
+    "key":{
+        "D":{
+            "item":"#GEMDIAMOND"
+        },
+        "G":{
+            "item":"minecraft:glass_bottle"
+        }
+    }
+}

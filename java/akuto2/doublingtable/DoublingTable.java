@@ -16,14 +16,14 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-@Mod(modid = "doublingtable", name = "DoublingTable", version = "3.0.2", guiFactory = "Akuto2.Utils.DoublingTableGuiFactory")
+@Mod(modid = "doublingtable", name = "DoublingTable", version = "3.0.3", guiFactory = "akuto2.doublingtable.utils.DoublingTableGuiFactory")
 @Mod.EventBusSubscriber(modid = "doublingtable")
 public class DoublingTable {
 	@Instance("doublingtable")
 	public static DoublingTable instance;
 	@Metadata("doublingtable")
 	public static ModMetadata meta;
-	@SidedProxy(serverSide = "Akuto2.Proxies.CommonProxy", clientSide = "Akuto2.Proxies.ClientProxy")
+	@SidedProxy(serverSide = "akuto2.doublingtable.proxies.CommonProxy", clientSide = "akuto2.doublingtable.proxies.ClientProxy")
 	public static CommonProxy proxy;
 	public static final CreativeTabs tabs = new CreativeTabDoublingTable("DoublingTable");
 

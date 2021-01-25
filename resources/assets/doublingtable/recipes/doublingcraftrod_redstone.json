@@ -1,0 +1,27 @@
+{
+    "result":{
+        "item":"doublingtable:doublingcraftrod",
+        "data":7
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "WWX",
+        "WYW",
+        "ZWW"
+    ],
+    "key":{
+        "X":{
+            "item":"minecraft:ender_pearl"
+        },
+        "Y":{
+            "item":"doublingtable:doublingtable",
+            "data":7
+        },
+        "Z":{
+            "item":"minecraft:stick"
+        },
+        "W":{
+            "item":"#REDSTONEDUST"
+        }
+    }
+}

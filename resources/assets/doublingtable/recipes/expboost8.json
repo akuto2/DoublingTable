@@ -1,0 +1,22 @@
+{
+    "result":{
+        "item":"doublingtable:expboost8"
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "Z X",
+        " Y ",
+        "X Z"
+    ],
+    "key":{
+        "X":{
+            "item":"doublingtable:expboost7"
+        },
+        "Y":{
+            "item":"minecraft:emerald_block"
+        },
+        "Z":{
+            "item":"#GEMEMERALD"
+        }
+    }
+}

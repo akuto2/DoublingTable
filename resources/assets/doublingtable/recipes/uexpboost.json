@@ -1,0 +1,20 @@
+{
+    "result":{
+        "item":"doublingtable:uexpboost"
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "X X",
+        " Y ",
+        "X X"
+    ],
+    "key":{
+        "X":{
+            "item":"doublingtable:expboost11"
+        },
+        "Y":{
+            "item":"doublingtable:compressedexpcore",
+            "data":5
+        }
+    }
+}

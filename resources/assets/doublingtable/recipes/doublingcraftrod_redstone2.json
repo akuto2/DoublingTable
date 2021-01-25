@@ -1,0 +1,21 @@
+{
+    "result":{
+        "item":"doublingtable:doublingcraftrod",
+        "data":7
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        " X",
+        "Y "
+    ],
+    "key":{
+        "X":{
+            "item":"doublingtable:doublingtable",
+            "data":7
+        },
+        "Y":{
+            "item":"doublingtable:doublingcraftrod",
+            "data":6
+        }
+    }
+}
