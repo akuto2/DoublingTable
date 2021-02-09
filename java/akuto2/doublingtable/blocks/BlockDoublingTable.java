@@ -4,6 +4,7 @@ import java.util.List;
 
 import akuto2.doublingtable.DoublingTable;
 import akuto2.doublingtable.utils.DoublingTableConfig;
+import akuto2.doublingtable.utils.Utils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockDirectional;
@@ -51,7 +52,8 @@ public class BlockDoublingTable extends BlockDirectional{
 
 	@Override
 	public boolean onBlockActivated(World world, int posX, int posY, int posZ, EntityPlayer entityplayer, int par6, float par7, float par8, float par9) {
-		entityplayer.openGui(DoublingTable.instance, 0, world, posX, posY, posZ);
+		if(!world.isRemote)
+			entityplayer.openGui(DoublingTable.instance, Utils.GUI_DOUBLINGTABLE_ID, world, posX, posY, posZ);
 		return true;
 	}
 

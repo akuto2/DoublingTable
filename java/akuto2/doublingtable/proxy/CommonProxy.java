@@ -12,4 +12,8 @@ public class CommonProxy {
 	public void registerTileEntity() {
 		GameRegistry.registerTileEntity(TileEntityDoublingFurnace.class, "TileDoubilngFurnace");
 	}
+
+	public void registerClientOnlyEvents() {
+
+	}
 }

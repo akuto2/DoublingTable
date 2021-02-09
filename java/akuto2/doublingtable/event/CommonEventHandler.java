@@ -39,11 +39,11 @@ public class CommonEventHandler {
 
 		Random r = event.entityLiving.worldObj.rand;
 
-		int lootinglevel = event.lootingLevel;
+		int lootinglevel = (event.lootingLevel * 5) + 5;
 
 		int noA = new java.util.Random().nextInt(100);
 
-		if(noA < lootinglevel * 5 && event.entityLiving instanceof EntityMob){
+		if(noA < lootinglevel && event.entityLiving instanceof EntityMob){
 			event.drops.add(new EntityItem(world, x, y, z, new ItemStack(DoublingTable.expCore, 1)));
 		}
 	}

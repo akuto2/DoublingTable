@@ -6,6 +6,7 @@ import java.util.Random;
 import akuto2.doublingtable.DoublingTable;
 import akuto2.doublingtable.tile.TileEntityDoublingFurnace;
 import akuto2.doublingtable.utils.DoublingTableConfig;
+import akuto2.doublingtable.utils.Utils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -81,7 +82,7 @@ public class BlockDoublingFurnace extends BlockContainer{
 			return true;
 		}
 		else{
-			entity.openGui(DoublingTable.instance, 1, world, x, y, z);
+			entity.openGui(DoublingTable.instance, Utils.GUI_DOUBLINGFURNACE_ID, world, x, y, z);
 			return true;
 		}
 	}

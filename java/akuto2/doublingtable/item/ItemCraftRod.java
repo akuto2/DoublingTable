@@ -1,6 +1,7 @@
 package akuto2.doublingtable.item;
 
 import akuto2.doublingtable.DoublingTable;
+import akuto2.doublingtable.utils.Utils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,7 +15,8 @@ public class ItemCraftRod extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player)
     {
-		player.openGui(DoublingTable.instance, 2, world, player.chunkCoordX, player.chunkCoordY, player.chunkCoordZ);
+		if(!world.isRemote)
+			player.openGui(DoublingTable.instance, Utils.GUI_CRAFTROD_ID, world, player.chunkCoordX, player.chunkCoordY, player.chunkCoordZ);
     	return item;
     }
 }

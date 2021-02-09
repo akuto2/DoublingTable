@@ -4,6 +4,7 @@ import java.util.List;
 
 import akuto2.doublingtable.DoublingTable;
 import akuto2.doublingtable.utils.DoublingTableConfig;
+import akuto2.doublingtable.utils.Utils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -63,7 +64,8 @@ public class ItemDoublingCraftRod extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player)
     {
-		player.openGui(DoublingTable.instance, 3, world, player.chunkCoordX, player.chunkCoordY, player.chunkCoordZ);
+		if(!world.isRemote)
+			player.openGui(DoublingTable.instance, Utils.GUI_DOUBLINGCRAFTROD_ID, world, player.chunkCoordX, player.chunkCoordY, player.chunkCoordZ);
     	return item;
     }
 }

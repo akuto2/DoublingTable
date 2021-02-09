@@ -2,6 +2,7 @@ package akuto2.doublingtable;
 
 import akuto2.doublingtable.blocks.BlockDoublingFurnace;
 import akuto2.doublingtable.blocks.BlockDoublingTable;
+import akuto2.doublingtable.blocks.BlockEnchantmentTableMk2;
 import akuto2.doublingtable.blocks.ItemBlockDoublingFurnace;
 import akuto2.doublingtable.blocks.ItemBlockDoublingTable;
 import akuto2.doublingtable.creativetab.CreativeTabDoublingTable;
@@ -46,18 +47,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "DoublingTable", name = "DoublingTable", version = "1.2.5", useMetadata = true, guiFactory = "Akuto2.utils.DoublingTableGuiFactory")
+@Mod(modid = "DoublingTable", name = "DoublingTable", version = "1.2.5", useMetadata = true, guiFactory = "akuto2.doublingtable.utils.DoublingTableGuiFactory")
 public class DoublingTable {
 	@Instance("DoublingTable")
 	public static DoublingTable instance;
 	@Metadata("DoublingTable")
 	public static ModMetadata meta;
-	@SidedProxy(clientSide = "Akuto2.proxy.ClientProxy", serverSide = "Akuto2.proxy.CommonProxy")
+	@SidedProxy(clientSide = "akuto2.doublingtable.proxy.ClientProxy", serverSide = "akuto2.doublingtable.proxy.CommonProxy")
 	public static CommonProxy proxy;
 	public static final CreativeTabs tabDoublingTable = new CreativeTabDoublingTable("DoublingTable");
 	public static Block doublingTable;
 	public static Block doublingFurnace;
 	public static Block doublingFurnaceOn;
+	public static Block enchantmentTableMk2;
 	public static Item craftRod;
 	public static Item doublingCraftRod;
 	public static Item expBoost1;
@@ -83,6 +85,7 @@ public class DoublingTable {
 		doublingTable = new BlockDoublingTable().setBlockName("doublingTable").setStepSound(Block.soundTypeWood).setHardness(2.5F);
 		doublingFurnace = new BlockDoublingFurnace(false).setBlockName("doublingFurnace").setCreativeTab(tabDoublingTable);
 		doublingFurnaceOn = new BlockDoublingFurnace(true).setBlockName("doublingFurnaceOn");
+		enchantmentTableMk2 = new BlockEnchantmentTableMk2();
 		craftRod = new ItemCraftRod().setUnlocalizedName("craftRod").setCreativeTab(tabDoublingTable).setTextureName("doublingtable:craftrod");
 		doublingCraftRod = new ItemDoublingCraftRod().setUnlocalizedName("doublingCraftRod").setCreativeTab(tabDoublingTable).setTextureName("doublingtable:doublingcraftrod");
 		expBoost1 = new ItemExpBoost1().setUnlocalizedName("expBoost1").setTextureName("doublingtable:expboost1");
@@ -103,6 +106,7 @@ public class DoublingTable {
 		GameRegistry.registerBlock(doublingTable, ItemBlockDoublingTable.class, "doublingTable");
 		GameRegistry.registerBlock(doublingFurnace, ItemBlockDoublingFurnace.class, "doublingFurnace");
 		GameRegistry.registerBlock(doublingFurnaceOn, "doublingFurnaceOn");
+		GameRegistry.registerBlock(enchantmentTableMk2, "enchantmentTableMk2");
 		GameRegistry.registerItem(craftRod, "craftRod");
 		GameRegistry.registerItem(doublingCraftRod, "doublingCraftRod");
 		GameRegistry.registerItem(expBoost1, "expBoost1");
@@ -119,13 +123,16 @@ public class DoublingTable {
 		GameRegistry.registerItem(uexpBoost, "uexpBoost");
 		GameRegistry.registerItem(expCore, "expCore");
 		GameRegistry.registerItem(compressedexpCore, "compressedexpCore");
+
+		MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
+		FMLCommonHandler.instance().bus().register(new CommonEventHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+
+		proxy.registerClientOnlyEvents();
 	}
 
 	@EventHandler
 	public void load(FMLInitializationEvent event){
-		MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
-		FMLCommonHandler.instance().bus().register(new CommonEventHandler());
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		// TileEntity登録
 		proxy.registerTileEntity();
 
@@ -164,11 +171,11 @@ public class DoublingTable {
 		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 3), " x", "y ", 'x', new ItemStack(doublingTable, 1, 3), 'y', new ItemStack(doublingCraftRod, 1, 2));
 		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 4), " x", "y ", 'x', new ItemStack(doublingTable, 1, 4), 'y', new ItemStack(doublingCraftRod, 1, 3));
 		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 5), " x", "y ", 'x', new ItemStack(doublingTable, 1, 5), 'y', new ItemStack(doublingCraftRod, 1, 4));
-		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 6), " x", "y ", 'x', new ItemStack(doublingTable, 1, 6), 'y', new ItemStack(doublingCraftRod, 1, 5));
-		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 7), " x", "y ", 'x', new ItemStack(doublingTable, 1, 7), 'y', new ItemStack(doublingCraftRod, 1, 6));
+		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 6), " x", "y ", 'x', new ItemStack(doublingTable, 1, 6), 'y', new ItemStack(doublingCraftRod, 1, 2));
+		GameRegistry.addShapedRecipe(new ItemStack(doublingCraftRod, 1, 7), " x", "y ", 'x', new ItemStack(doublingTable, 1, 7), 'y', new ItemStack(doublingCraftRod, 1, 2));
 		GameRegistry.addRecipe(new ItemStack(Items.experience_bottle, 4), "x", "y", 'x', Items.diamond, 'y', Items.glass_bottle);
 		GameRegistry.addRecipe(new ItemStack(expBoost1), "  x", " y ", "x  ", 'x', Items.experience_bottle, 'y', Items.stick);
-		GameRegistry.addRecipe(new ItemStack(expBoost2), "z x", " y ", "x z", 'x', expBoost1, 'y', Items.stick);
+		GameRegistry.addRecipe(new ItemStack(expBoost2), "  x", " y ", "x  ", 'x', expBoost1, 'y', Items.stick);
 		GameRegistry.addRecipe(new ItemStack(expBoost3), "z x", " y ", "x z", 'x', expBoost2, 'y', Blocks.coal_block, 'z', Items.coal);
 		GameRegistry.addRecipe(new ItemStack(expBoost4), "z x", " y ", "x z", 'x', expBoost3, 'y', Blocks.redstone_block, 'z', Items.redstone);
 		GameRegistry.addRecipe(new ItemStack(expBoost5), "z x", " y ", "x z", 'x', expBoost4, 'y', Blocks.iron_block, 'z', Items.iron_ingot);
