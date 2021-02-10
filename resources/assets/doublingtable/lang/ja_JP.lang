@@ -15,6 +15,7 @@ tile.doublingFurnace.diamond.name=ダイヤモンドの倍加かまど
 tile.doublingFurnace.emerald.name=エメラルドの倍加かまど
 tile.doublingFurncae.lapis.name=ラピスラズリの倍加かまど
 tile.doublingFurnace.redstone.name=レッドストーンの倍加かまど
+tile.enchantmentTableMk2.name=エンチャントテーブルMk2
 item.craftRod.name=クラフティングロッド
 item.doublingCraftRod.wood.name=木の倍加クラフティングロッド
 item.doublingCraftRod.stone.name=石の倍加クラフティングロッド

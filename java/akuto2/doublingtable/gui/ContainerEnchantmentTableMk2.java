@@ -3,7 +3,6 @@ package akuto2.doublingtable.gui;
 import java.util.List;
 import java.util.Random;
 
-import akuto2.doublingtable.tile.TileEntityEnchantmentTableMk2;
 import akuto2.doublingtable.utils.EnchantmentHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -14,33 +13,64 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ContainerEnchantmentTableMk2 extends Container{
-	public final TileEntityEnchantmentTableMk2 enchantmentTableMk2;
+	public IInventory tableInventory;
 	private World world;
 	private int posX;
 	private int posY;
 	private int posZ;
-	private int[] lastEnchantments = new int[3];
-	private int lastTier;
 	private Random rand = new Random();
 	public long nameSeed;
+	public int[] enchantLevels = new int[3];
 
-	public ContainerEnchantmentTableMk2(InventoryPlayer inventoryPlayer, TileEntityEnchantmentTableMk2 tile, World world, int posX, int posY, int posZ) {
+	public ContainerEnchantmentTableMk2(InventoryPlayer inventoryPlayer, World world, int posX, int posY, int posZ) {
 		this.world = world;
 		this.posX = posX;
 		this.posY = posY;
 		this.posZ = posZ;
-		enchantmentTableMk2 = tile;
-		setTier(1);
-		enchantmentTableMk2.setContainer(this);
-		addSlotToContainer(new Slot(enchantmentTableMk2, 0, 25, 47) {
+		tableInventory = new InventoryBasic("Enchant", true, 2) {
+			@Override
+			public int getInventoryStackLimit() {
+				return 64;
+			}
+
+			@Override
+			public void markDirty() {
+				super.markDirty();
+				ContainerEnchantmentTableMk2.this.onCraftMatrixChanged(this);
+			}
+		};
+
+		addSlotToContainer(new Slot(tableInventory, 0, 15, 47) {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				return true;
+			}
+
+			@Override
+			public int getSlotStackLimit() {
+				return 1;
+			}
+		});
+
+		addSlotToContainer(new Slot(tableInventory, 1, 35, 47) {
+			List<ItemStack> ores = OreDictionary.getOres("gemLapis");
+
+			@Override
+			public boolean isItemValid(ItemStack stack) {
+				for(ItemStack ore : ores) {
+					if(OreDictionary.itemMatches(ore, stack, false)) {
+						return true;
+					}
+				}
+				return false;
 			}
 		});
 
@@ -58,10 +88,9 @@ public class ContainerEnchantmentTableMk2 extends Container{
 	@Override
 	public void addCraftingToCrafters(ICrafting iCrafting) {
 		super.addCraftingToCrafters(iCrafting);
-		iCrafting.sendProgressBarUpdate(this, 0, enchantmentTableMk2.enchantLevels[0]);
-		iCrafting.sendProgressBarUpdate(this, 1, enchantmentTableMk2.enchantLevels[1]);
-		iCrafting.sendProgressBarUpdate(this, 2, enchantmentTableMk2.enchantLevels[2]);
-		iCrafting.sendProgressBarUpdate(this, 3, enchantmentTableMk2.tier);
+		iCrafting.sendProgressBarUpdate(this, 0, enchantLevels[0]);
+		iCrafting.sendProgressBarUpdate(this, 1, enchantLevels[1]);
+		iCrafting.sendProgressBarUpdate(this, 2, enchantLevels[2]);
 	}
 
 	@Override
@@ -70,34 +99,17 @@ public class ContainerEnchantmentTableMk2 extends Container{
 
 		for(int i = 0; i < crafters.size(); i++) {
 			ICrafting iCrafting = (ICrafting)crafters.get(i);
-			if(lastEnchantments[0] != enchantmentTableMk2.enchantLevels[0])
-				iCrafting.sendProgressBarUpdate(this, 0, enchantmentTableMk2.enchantLevels[0]);
-
-			if(lastEnchantments[1] != enchantmentTableMk2.enchantLevels[1])
-				iCrafting.sendProgressBarUpdate(this, 1, enchantmentTableMk2.enchantLevels[1]);
-
-			if(lastEnchantments[2] != enchantmentTableMk2.enchantLevels[2])
-				iCrafting.sendProgressBarUpdate(this, 2, enchantmentTableMk2.enchantLevels[2]);
-
-			if(lastTier != enchantmentTableMk2.tier)
-				iCrafting.sendProgressBarUpdate(this, 3, enchantmentTableMk2.tier);
+			iCrafting.sendProgressBarUpdate(this, 0, enchantLevels[0]);
+			iCrafting.sendProgressBarUpdate(this, 1, enchantLevels[1]);
+			iCrafting.sendProgressBarUpdate(this, 2, enchantLevels[2]);
 		}
-
-		for(int i = 0; i < 3; i++) {
-			lastEnchantments[i] = enchantmentTableMk2.enchantLevels[i];
-		}
-		lastTier = enchantmentTableMk2.tier;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void updateProgressBar(int id, int data) {
 		if(id >= 0 && id <= 2) {
-			enchantmentTableMk2.enchantLevels[id] = data;
-		}
-		else if(id == 3) {
-			System.out.println("tier:" + data);
-			enchantmentTableMk2.tier = data;
+			enchantLevels[id] = data;
 		}
 		else {
 			super.updateProgressBar(id, data);
@@ -106,21 +118,23 @@ public class ContainerEnchantmentTableMk2 extends Container{
 
 	@Override
 	public void onCraftMatrixChanged(IInventory inventory) {
-		if(inventory == enchantmentTableMk2) {
+		if(inventory == tableInventory) {
 			ItemStack stack = inventory.getStackInSlot(0);
+			ItemStack lapis = inventory.getStackInSlot(1);
 
 			if(stack != null && stack.isItemEnchantable()) {
 				nameSeed = rand.nextLong();
 			}
 
-			enchantmentTableMk2.changeEnchantLevel();
+			changeEnchantLevel(lapis != null ? lapis.stackSize : 0);
 		}
 	}
 
 	@Override
 	public boolean enchantItem(EntityPlayer player, int button) {
-		ItemStack stack = enchantmentTableMk2.getStackInSlot(0);
-		int enchantLevel = enchantmentTableMk2.enchantLevels[button];
+		ItemStack stack = tableInventory.getStackInSlot(0);
+		ItemStack lapis = tableInventory.getStackInSlot(1);
+		int enchantLevel = enchantLevels[button];
 
 		if(enchantLevel > 0 && stack != null && (player.experienceLevel >= enchantLevel || player.capabilities.isCreativeMode)) {
 			if(!world.isRemote) {
@@ -132,7 +146,7 @@ public class ContainerEnchantmentTableMk2 extends Container{
 
 					if(flag) {
 						stack = new ItemStack(Items.enchanted_book);
-						enchantmentTableMk2.setInventorySlotContents(0, stack);
+						tableInventory.setInventorySlotContents(0, stack);
 						if(list.size() > 1) {
 							list.remove(rand.nextInt(list.size()));
 						}
@@ -149,7 +163,14 @@ public class ContainerEnchantmentTableMk2 extends Container{
 						}
 					}
 
-					onCraftMatrixChanged(enchantmentTableMk2);
+					if(!player.capabilities.isCreativeMode) {
+						lapis.stackSize = lapis.stackSize > 10 ? lapis.stackSize - 10 : 0;
+						if(lapis.stackSize <= 0) {
+							tableInventory.setInventorySlotContents(1, null);
+						}
+					}
+
+					onCraftMatrixChanged(tableInventory);
 				}
 			}
 
@@ -164,10 +185,12 @@ public class ContainerEnchantmentTableMk2 extends Container{
 		super.onContainerClosed(player);
 
 		if(!world.isRemote) {
-			ItemStack stack = enchantmentTableMk2.getStackInSlotOnClosing(0);
+			for(int i = 0; i < tableInventory.getSizeInventory(); i++) {
+				ItemStack stack = tableInventory.getStackInSlotOnClosing(i);
 
-			if(stack != null) {
-				player.dropPlayerItemWithRandomChoice(stack, false);
+				if(stack != null) {
+					player.dropPlayerItemWithRandomChoice(stack, false);
+				}
 			}
 		}
 	}
@@ -177,20 +200,20 @@ public class ContainerEnchantmentTableMk2 extends Container{
 		return true;
 	}
 
-	public void setTier(int tier) {
-		enchantmentTableMk2.tier = tier;
-	}
-
-	/*
+	/**
+	 * エンチャントテーブルに表示されるレベルを変更する
+	 */
 	public void changeEnchantLevel(int tier) {
-		this.tier = tier;
 		ItemStack stack = tableInventory.getStackInSlot(0);
+		int amount = MathHelper.clamp_int(tier, 0, 10);
 
 		if(stack != null && stack.isItemEnchantable()) {
 			if(!world.isRemote) {
 				for(int i = 0; i < 3; i++) {
-					enchantLevels[i] = EnchantmentHelper.calcItemStackEnchantability(rand, i, tier, stack);
+					enchantLevels[i] = EnchantmentHelper.calcItemStackEnchantability(rand, i, amount, stack);
 				}
+
+				detectAndSendChanges();
 			}
 		}
 		else {
@@ -199,7 +222,6 @@ public class ContainerEnchantmentTableMk2 extends Container{
 			}
 		}
 	}
-	*/
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int index) {
@@ -211,7 +233,17 @@ public class ContainerEnchantmentTableMk2 extends Container{
 			stack = stack2.copy();
 
 			if(index == 0) {
-				if(!mergeItemStack(stack2, 1, 37, true)) {
+				if(!mergeItemStack(stack2, 2, 38, true)) {
+					return null;
+				}
+			}
+			else if(index == 1) {
+				if(!mergeItemStack(stack2, 2, 38, true)) {
+					return null;
+				}
+			}
+			else if(stack2.getItem() == Items.dye && (stack2.getItemDamage() == 4)) {
+				if(!mergeItemStack(stack2, 1, 2, true)) {
 					return null;
 				}
 			}

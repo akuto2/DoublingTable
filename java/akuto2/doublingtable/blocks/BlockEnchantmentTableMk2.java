@@ -25,6 +25,8 @@ public class BlockEnchantmentTableMk2 extends BlockContainer{
 
 	public BlockEnchantmentTableMk2() {
 		super(Material.rock);
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
+		setLightOpacity(0);
 		setCreativeTab(DoublingTable.tabDoublingTable);
 	}
 
@@ -46,17 +48,21 @@ public class BlockEnchantmentTableMk2 extends BlockContainer{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register) {
-
+		blockIcon = register.registerIcon("doublingtable:enchantmenttablemk2_side");
+		topIcon = register.registerIcon("doublingtable:enchantmenttablemk2_top");
+		bottomIcon = register.registerIcon("doublingtable:enchantmenttablemk2_bottom");
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		return null;
+		return side == 0 ? bottomIcon : (side == 1 ? topIcon : blockIcon);
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random random) {
-
+		super.randomDisplayTick(world, x, y, z, random);
 	}
 
 	@Override

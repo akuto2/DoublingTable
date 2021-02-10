@@ -15,6 +15,7 @@ tile.doublingFurnace.diamond.name=Diamond doubling furnace
 tile.doublingFurnace.emerald.name=Emerald doubling furnace
 tile.doublingFurnace.lapis.name=Lapis lazuli doubling furnace
 tile.doublingFurnace.redstone.name=Redstone doubling furnace
+tile.enchantmentTableMk2.name=Enchantment Table Mk2
 item.craftRod.name=Crafting rod
 item.doublingCraftRod.wood.name=Wooden doubling crafting rod
 item.doublingCraftRod.stone.name=Stone doubling crafting rod

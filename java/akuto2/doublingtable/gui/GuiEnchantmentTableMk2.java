@@ -6,7 +6,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.util.glu.Project;
 
-import akuto2.doublingtable.tile.TileEntityEnchantmentTableMk2;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.FontRenderer;
@@ -14,6 +13,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnchantmentNameParts;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 @SideOnly(Side.CLIENT)
 public class GuiEnchantmentTableMk2 extends GuiContainer{
 	/** GUIのテクスチャ */
-	private static final ResourceLocation ENCHANTMENT_TABLE_GUI_TEXTURE = new ResourceLocation("textures/gui/container/enchanting_table.png");
+	private static final ResourceLocation ENCHANTMENT_TABLE_GUI_TEXTURE = new ResourceLocation("doublingtable:textures/gui/container/enchanting_table.png");
 	/** エンチャントテーブルの上にある本のテクスチャ */
 	private static final ResourceLocation ENCHANTMENT_TABLE_BOOK_TEXTURE = new ResourceLocation("textures/entity/enchanting_table_book.png");
 	/** エンチャントテーブルの上にある本のモデルデータ */
@@ -32,7 +32,6 @@ public class GuiEnchantmentTableMk2 extends GuiContainer{
 	private final InventoryPlayer inventoryPlayer;
 	private final Random random = new Random();
 	private final ContainerEnchantmentTableMk2 container;
-	private final TileEntityEnchantmentTableMk2 enchantmentTableMk2;
 	public int ticks;
 	public float flip;
 	public float oFlip;
@@ -43,16 +42,16 @@ public class GuiEnchantmentTableMk2 extends GuiContainer{
 	private ItemStack last;
 	private int tier;
 
-	public GuiEnchantmentTableMk2(InventoryPlayer inventoryPlayer, TileEntityEnchantmentTableMk2 tile, World world, int posX, int posY, int posZ) {
-		super(new ContainerEnchantmentTableMk2(inventoryPlayer, tile, world, posX, posY, posZ));
+	public GuiEnchantmentTableMk2(InventoryPlayer inventoryPlayer, World world, int posX, int posY, int posZ) {
+		super(new ContainerEnchantmentTableMk2(inventoryPlayer, world, posX, posY, posZ));
 		this.inventoryPlayer = inventoryPlayer;
 		container = (ContainerEnchantmentTableMk2)inventorySlots;
-		enchantmentTableMk2 = tile;
 	}
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-
+		fontRendererObj.drawString(I18n.format("container.enchant", new Object[0]), 12, 5, 4210752);
+		fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, ySize - 96 + 2, 4210752);
 	}
 
 	@Override
@@ -132,7 +131,8 @@ public class GuiEnchantmentTableMk2 extends GuiContainer{
 			int i1 = x + 60;
 			zLevel = 0.0F;
 			mc.getTextureManager().bindTexture(ENCHANTMENT_TABLE_GUI_TEXTURE);
-			int j1 = enchantmentTableMk2.enchantLevels[i];
+			int j1 = container.enchantLevels[i];
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 			if(j1 == 0) {
 				drawTexturedModalRect(i1, y + 14 + 19 * i, 0, 185, 108, 19);
@@ -190,7 +190,7 @@ public class GuiEnchantmentTableMk2 extends GuiContainer{
 		boolean flag = false;
 
 		for(int i = 0; i < 3; i++) {
-			if(enchantmentTableMk2.enchantLevels[i] != 0) {
+			if(container.enchantLevels[i] != 0) {
 				flag = true;
 			}
 		}

@@ -4,7 +4,6 @@ import akuto2.doublingtable.blocks.BlockDoublingFurnace;
 import akuto2.doublingtable.blocks.BlockDoublingTable;
 import akuto2.doublingtable.item.ItemDoublingCraftRod;
 import akuto2.doublingtable.tile.TileEntityDoublingFurnace;
-import akuto2.doublingtable.tile.TileEntityEnchantmentTableMk2;
 import akuto2.doublingtable.utils.Utils;
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.client.gui.inventory.GuiCrafting;
@@ -32,7 +31,7 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerDoublingCraftRod(player.inventory, world, x, y, z, ItemDoublingCraftRod.times[player.getHeldItem().getItemDamage()]);
 		}
 		if(ID == Utils.GUI_ENCHANTMENTTABLE_MK2_ID) {
-			return new ContainerEnchantmentTableMk2(player.inventory, (TileEntityEnchantmentTableMk2)tileentity, world, x, y, z);
+			return new ContainerEnchantmentTableMk2(player.inventory, world, x, y, z);
 		}
 		return null;
 	}
@@ -56,7 +55,7 @@ public class GuiHandler implements IGuiHandler {
 			return new GuiDoublingTable(player.inventory, world, x, y, z, ItemDoublingCraftRod.times[player.getHeldItem().getItemDamage()]);
 		}
 		if(ID == Utils.GUI_ENCHANTMENTTABLE_MK2_ID) {
-			return new GuiEnchantmentTableMk2(player.inventory, (TileEntityEnchantmentTableMk2)tileentity, world, x, y, z);
+			return new GuiEnchantmentTableMk2(player.inventory, world, x, y, z);
 		}
 		return null;
 	}

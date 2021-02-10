@@ -111,17 +111,23 @@ public class EnchantmentHelper {
 			return 0;
 		}
 		else {
-			if(enchantNum == 0) {
-				return random.nextInt(50) + 1 + (tier - 1) * 100;
-			}
-			else if(enchantNum == 1) {
-				return random.nextInt(50) + 51 + (tier - 1) * 100;
-			}
-			else if(enchantNum == 2) {
-				return tier * 100;
+			if(tier == 0) {
+				int j = random.nextInt(8) + 1 + (15 >> 1) + random.nextInt(15 + 1);
+				return enchantNum == 0 ? Math.max(j / 3, 1) : (enchantNum == 1 ? j * 2 / 3 + 1 : Math.max(j, 30));
 			}
 			else {
-				return 0;
+				if(enchantNum == 0) {
+					return random.nextInt(50) + 1 + (tier - 1) * 100;
+				}
+				else if(enchantNum == 1) {
+					return random.nextInt(50) + 51 + (tier - 1) * 100;
+				}
+				else if(enchantNum == 2) {
+					return tier * 100;
+				}
+				else {
+					return 0;
+				}
 			}
 		}
 	}

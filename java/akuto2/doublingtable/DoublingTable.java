@@ -85,7 +85,7 @@ public class DoublingTable {
 		doublingTable = new BlockDoublingTable().setBlockName("doublingTable").setStepSound(Block.soundTypeWood).setHardness(2.5F);
 		doublingFurnace = new BlockDoublingFurnace(false).setBlockName("doublingFurnace").setCreativeTab(tabDoublingTable);
 		doublingFurnaceOn = new BlockDoublingFurnace(true).setBlockName("doublingFurnaceOn");
-		enchantmentTableMk2 = new BlockEnchantmentTableMk2();
+		enchantmentTableMk2 = new BlockEnchantmentTableMk2().setBlockName("enchantmentTableMk2");
 		craftRod = new ItemCraftRod().setUnlocalizedName("craftRod").setCreativeTab(tabDoublingTable).setTextureName("doublingtable:craftrod");
 		doublingCraftRod = new ItemDoublingCraftRod().setUnlocalizedName("doublingCraftRod").setCreativeTab(tabDoublingTable).setTextureName("doublingtable:doublingcraftrod");
 		expBoost1 = new ItemExpBoost1().setUnlocalizedName("expBoost1").setTextureName("doublingtable:expboost1");
@@ -156,6 +156,7 @@ public class DoublingTable {
 		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 5), "xxx", "xyx", "xxx", 'x', Items.emerald, 'y', new ItemStack(doublingFurnace, 1, 4));
 		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 6), "xxx", "xyx", "xxx", 'x', new ItemStack(Items.dye, 1, 4), 'y', new ItemStack(doublingFurnace, 1, 2));
 		GameRegistry.addRecipe(new ItemStack(doublingFurnace, 1, 7), "xxx", "xyx", "xxx", 'x', Items.redstone, 'y', new ItemStack(doublingFurnace, 1, 2));
+		GameRegistry.addRecipe(new ItemStack(enchantmentTableMk2), " e ", "glg", "ddd", 'e', Blocks.enchanting_table, 'l', Blocks.lapis_block, 'g', Blocks.gold_block, 'd', Blocks.diamond_block);
 		GameRegistry.addRecipe(new ItemStack(craftRod, 1), "  x", " y ", "z  ", 'x', Items.ender_pearl, 'y', Blocks.crafting_table, 'z', Items.stick);
 		GameRegistry.addRecipe(new ItemStack(doublingCraftRod, 1, 0), "wwx", "wyw", "zww", 'x', Items.ender_pearl, 'y', new ItemStack(doublingTable, 1, 0), 'z', Items.stick, 'w', new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE));
 		GameRegistry.addRecipe(new ItemStack(doublingCraftRod, 1, 1), "wwx", "wyw", "zww", 'x', Items.ender_pearl, 'y', new ItemStack(doublingTable, 1, 1), 'z', Items.stick, 'w', Blocks.cobblestone);
