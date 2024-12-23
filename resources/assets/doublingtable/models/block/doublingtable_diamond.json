@@ -1,8 +1,8 @@
 {
     "parent":"block/cube_bottom_top",
     "textures":{
-        "down":"doublingtable:blocks/doublingtable_diamond_bottom",
-        "top":"doublingtable:blocks/doublingtable_diamond_top",
-        "side":"doublingtable:blocks/doublingtable_diamond"
+        "down":"doublingtable:block/doublingtable_diamond_bottom",
+        "top":"doublingtable:block/doublingtable_diamond_top",
+        "side":"doublingtable:block/doublingtable_diamond"
     }
 }

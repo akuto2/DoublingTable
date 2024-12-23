@@ -1,0 +1,10 @@
+{
+	"block.doublingtable.doublingtable_wood": "Wooden Doubling Table",
+	"block.doublingtable.doublingtable_stone": "Stone Doubling Table",
+	"block.doublingtable.doublingtable_iron": "Iron Doubling Table",
+	"block.doublingtable.doublingtable_gold": "Gold Doubling Table",
+	"block.doublingtable.doublingtable_diamond": "Diamond Doubling Table",
+	"block.doublingtable.doublingtable_emerald": "Emerald Doubling Table", 
+	
+	"creativetab.doublingtable": "DoublingTable"
+}
