@@ -2,8 +2,9 @@ package com.akuto2.doublingtable.registers.client;
 
 import com.akuto2.akutolib.registration.object.MenuTypeRegistryObject;
 import com.akuto2.doublingtable.DoublingTable;
+import com.akuto2.doublingtable.gui.GuiDoublingFurnace;
 import com.akuto2.doublingtable.gui.GuiDoublingTable;
-import com.akuto2.doublingtable.registers.Menus;
+import com.akuto2.doublingtable.registers.DTMenus;
 
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.MenuScreens.ScreenConstructor;
@@ -22,12 +23,19 @@ public class ClientRegistration {
 	@SubscribeEvent
 	public static void guiRegistryEvent(RegisterEvent event) {
 		event.register(Registries.MENU, helper -> {
-			registerScreen(Menus.DOUBLING_TABLE_WOOD, GuiDoublingTable.Wood::new);
-			registerScreen(Menus.DOUBLING_TABLE_STONE, GuiDoublingTable.Stone::new);
-			registerScreen(Menus.DOUBLING_TABLE_IRON, GuiDoublingTable.Iron::new);
-			registerScreen(Menus.DOUBLING_TABLE_GOLD, GuiDoublingTable.Gold::new);
-			registerScreen(Menus.DOUBLING_TABLE_DIAMOND, GuiDoublingTable.Diamond::new);
-			registerScreen(Menus.DOUBLING_TABLE_EMERALD, GuiDoublingTable.Emerald::new);
+			registerScreen(DTMenus.DOUBLING_TABLE_WOOD, GuiDoublingTable::new);
+			registerScreen(DTMenus.DOUBLING_TABLE_STONE, GuiDoublingTable::new);
+			registerScreen(DTMenus.DOUBLING_TABLE_IRON, GuiDoublingTable::new);
+			registerScreen(DTMenus.DOUBLING_TABLE_GOLD, GuiDoublingTable::new);
+			registerScreen(DTMenus.DOUBLING_TABLE_DIAMOND, GuiDoublingTable::new);
+			registerScreen(DTMenus.DOUBLING_TABLE_EMERALD, GuiDoublingTable::new);
+			
+			registerScreen(DTMenus.DOUBLING_FURNACE_WOOD, GuiDoublingFurnace::new);
+			registerScreen(DTMenus.DOUBLING_FURNACE_STONE, GuiDoublingFurnace::new);
+			registerScreen(DTMenus.DOUBLING_FURNACE_IRON, GuiDoublingFurnace::new);
+			registerScreen(DTMenus.DOUBLING_FURNACE_GOLD, GuiDoublingFurnace::new);
+			registerScreen(DTMenus.DOUBLING_FURNACE_DIAMOND, GuiDoublingFurnace::new);
+			registerScreen(DTMenus.DOUBLING_FURNACE_EMERALD, GuiDoublingFurnace::new);
 		});
 	}
 	

@@ -1,0 +1,22 @@
+{
+    "result":{
+        "item":"doublingtable:expboost4"
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "Z X",
+        " Y ",
+        "X Z"
+    ],
+    "key":{
+        "X":{
+            "item":"doublingtable:expboost3"
+        },
+        "Y":{
+            "item":"minecraft:redstone_block"
+        },
+        "Z":{
+            "item":"#REDSTONEDUST"
+        }
+    }
+}

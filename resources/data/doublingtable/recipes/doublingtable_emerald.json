@@ -1,0 +1,20 @@
+{
+    "result":{
+        "item":"doublingtable:doublingtable_emerald"
+    },
+    "category":"misc",
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "EEE",
+        "ECE",
+        "EEE"
+    ],
+    "key":{
+        "E":{
+            "tag":"forge:gems/emerald"
+        },
+        "C":{
+            "item":"doublingtable:doublingtable_diamond"
+        }
+    }
+}

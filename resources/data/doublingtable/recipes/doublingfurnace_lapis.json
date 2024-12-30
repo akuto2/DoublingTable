@@ -1,0 +1,21 @@
+{
+    "result":{
+        "item":"doublingtable:doublingfurnace",
+        "data":6
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "LLL",
+        "LCL",
+        "LLL"
+    ],
+    "key":{
+        "L":{
+            "item":"#GEMLAPIS"
+        },
+        "C":{
+            "item":"doublingtable:doublingfurnace",
+            "data":3
+        }
+    }
+}

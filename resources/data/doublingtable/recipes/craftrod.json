@@ -1,0 +1,22 @@
+{
+    "result":{
+        "item":"doublingtable:craftrod"
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "  X",
+        " Y ",
+        "Z  "
+    ],
+    "key":{
+        "X":{
+            "item":"minecraft:ender_pearl"
+        },
+        "Y":{
+            "item":"minecraft:crafting_table"
+        },
+        "Z":{
+            "item":"minecraft:stick"
+        }
+    }
+}

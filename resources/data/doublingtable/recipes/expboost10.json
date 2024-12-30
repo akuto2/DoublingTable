@@ -1,0 +1,22 @@
+{
+    "result":{
+        "item":"doublingtable:expboost10"
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "Z X",
+        " Y ",
+        "X Z"
+    ],
+    "key":{
+        "X":{
+            "item":"doublingtable:expboost9"
+        },
+        "Y":{
+            "item":"minecraft:ender_pearl"
+        },
+        "Z":{
+            "item":"minecraft:ender_eye"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "result":{
+        "item":"doublingtable:doublingtable_stone"
+    },
+    "category":"misc",
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "SSS",
+        "SCS",
+        "SSS"
+    ],
+    "key":{
+        "S": [
+        	{
+            	"tag":"forge:cobblestone/normal"
+            },
+            {
+            	"tag":"forge:cobblestone/deepslate"
+            }
+        ],
+        "C":{
+            "item":"doublingtable:doublingtable_wood"
+        }
+    }
+}

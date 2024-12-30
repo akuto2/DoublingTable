@@ -1,0 +1,20 @@
+{
+    "result":{
+        "item":"doublingtable:doublingtable_gold"
+    },
+    "category":"misc",
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "GGG",
+        "GCG",
+        "GGG"
+    ],
+    "key":{
+        "G":{
+            "tag":"forge:ingot/gold"
+        },
+        "C":{
+            "item":"doublingtable:doublingtable_iron"
+        }
+    }
+}

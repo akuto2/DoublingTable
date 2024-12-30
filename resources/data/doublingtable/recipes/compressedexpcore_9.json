@@ -1,0 +1,17 @@
+{
+    "result":{
+        "item":"doublingtable:compressedexpcore",
+        "data":0
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "XXX",
+        "XXX",
+        "XXX"
+    ],
+    "key":{
+        "X":{
+            "item":"doublingtable:expcore"
+        }
+    }
+}

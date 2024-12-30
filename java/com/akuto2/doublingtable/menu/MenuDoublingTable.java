@@ -5,8 +5,8 @@ import java.util.Optional;
 import com.akuto2.akutolib.registration.object.BlockRegistryObject;
 import com.akuto2.akutolib.registration.object.MenuTypeRegistryObject;
 import com.akuto2.doublingtable.blocks.BlockDoublingTable;
-import com.akuto2.doublingtable.registers.Blocks;
-import com.akuto2.doublingtable.registers.Menus;
+import com.akuto2.doublingtable.registers.DTBlocks;
+import com.akuto2.doublingtable.registers.DTMenus;
 import com.akuto2.doublingtable.utils.enums.EnumFacilityType;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -202,9 +202,10 @@ public abstract class MenuDoublingTable extends RecipeBookMenu<CraftingContainer
 	
 	public abstract BlockRegistryObject<BlockDoublingTable, ?> getValidBlock();
 
+	// 以下それぞれの種類ごとのMenuType
 	public static class Wood extends MenuDoublingTable {
 		public Wood(int id, Inventory playerInventory, ContainerLevelAccess access) {
-			super(Menus.DOUBLING_TABLE_WOOD, id, playerInventory, access, EnumFacilityType.WOOD);
+			super(DTMenus.DOUBLING_TABLE_WOOD, id, playerInventory, access, EnumFacilityType.WOOD);
 		}
 		
 		public Wood(int id, Inventory playerInventory, FriendlyByteBuf buf) {
@@ -213,13 +214,13 @@ public abstract class MenuDoublingTable extends RecipeBookMenu<CraftingContainer
 
 		@Override
 		public BlockRegistryObject<BlockDoublingTable, ?> getValidBlock() {
-			return Blocks.DOUBLING_TABLE_WOOD;
+			return DTBlocks.DOUBLING_TABLE_WOOD;
 		}
 	}
 	
 	public static class Stone extends MenuDoublingTable {
 		public Stone(int id, Inventory playerInventory, ContainerLevelAccess access) {
-			super(Menus.DOUBLING_TABLE_STONE, id, playerInventory, access, EnumFacilityType.STONE);
+			super(DTMenus.DOUBLING_TABLE_STONE, id, playerInventory, access, EnumFacilityType.STONE);
 		}
 		
 		public Stone(int id, Inventory playerInventory, FriendlyByteBuf buf) {
@@ -228,13 +229,13 @@ public abstract class MenuDoublingTable extends RecipeBookMenu<CraftingContainer
 
 		@Override
 		public BlockRegistryObject<BlockDoublingTable, ?> getValidBlock() {
-			return Blocks.DOUBLING_TABLE_STONE;
+			return DTBlocks.DOUBLING_TABLE_STONE;
 		}
 	}
 	
 	public static class Iron extends MenuDoublingTable {
 		public Iron(int id, Inventory playerInventory, ContainerLevelAccess access) {
-			super(Menus.DOUBLING_TABLE_IRON, id, playerInventory, access, EnumFacilityType.IRON);
+			super(DTMenus.DOUBLING_TABLE_IRON, id, playerInventory, access, EnumFacilityType.IRON);
 		}
 		
 		public Iron(int id, Inventory playerInventory, FriendlyByteBuf buf) {
@@ -243,13 +244,13 @@ public abstract class MenuDoublingTable extends RecipeBookMenu<CraftingContainer
 
 		@Override
 		public BlockRegistryObject<BlockDoublingTable, ?> getValidBlock() {
-			return Blocks.DOUBLING_TABLE_IRON;
+			return DTBlocks.DOUBLING_TABLE_IRON;
 		}
 	}
 	
 	public static class Gold extends MenuDoublingTable {
 		public Gold(int id, Inventory playerInventory, ContainerLevelAccess access) {
-			super(Menus.DOUBLING_TABLE_GOLD, id, playerInventory, access, EnumFacilityType.GOLD);
+			super(DTMenus.DOUBLING_TABLE_GOLD, id, playerInventory, access, EnumFacilityType.GOLD);
 		}
 		
 		public Gold(int id, Inventory playerInventory, FriendlyByteBuf buf) {
@@ -258,13 +259,13 @@ public abstract class MenuDoublingTable extends RecipeBookMenu<CraftingContainer
 
 		@Override
 		public BlockRegistryObject<BlockDoublingTable, ?> getValidBlock() {
-			return Blocks.DOUBLING_TABLE_GOLD;
+			return DTBlocks.DOUBLING_TABLE_GOLD;
 		}
 	}
 	
 	public static class Diamond extends MenuDoublingTable {
 		public Diamond(int id, Inventory playerInventory, ContainerLevelAccess access) {
-			super(Menus.DOUBLING_TABLE_DIAMOND, id, playerInventory, access, EnumFacilityType.DIAMOND);
+			super(DTMenus.DOUBLING_TABLE_DIAMOND, id, playerInventory, access, EnumFacilityType.DIAMOND);
 		}
 		
 		public Diamond(int id, Inventory playerInventory, FriendlyByteBuf buf) {
@@ -273,13 +274,13 @@ public abstract class MenuDoublingTable extends RecipeBookMenu<CraftingContainer
 
 		@Override
 		public BlockRegistryObject<BlockDoublingTable, ?> getValidBlock() {
-			return Blocks.DOUBLING_TABLE_DIAMOND;
+			return DTBlocks.DOUBLING_TABLE_DIAMOND;
 		}
 	}
 	
 	public static class Emerald extends MenuDoublingTable {
 		public Emerald(int id, Inventory playerInventory, ContainerLevelAccess access) {
-			super(Menus.DOUBLING_TABLE_EMERALD, id, playerInventory, access, EnumFacilityType.EMERALD);
+			super(DTMenus.DOUBLING_TABLE_EMERALD, id, playerInventory, access, EnumFacilityType.EMERALD);
 		}
 		
 		public Emerald(int id, Inventory playerInventory, FriendlyByteBuf buf) {
@@ -288,7 +289,7 @@ public abstract class MenuDoublingTable extends RecipeBookMenu<CraftingContainer
 
 		@Override
 		public BlockRegistryObject<BlockDoublingTable, ?> getValidBlock() {
-			return Blocks.DOUBLING_TABLE_EMERALD;
+			return DTBlocks.DOUBLING_TABLE_EMERALD;
 		}
 	}
 }

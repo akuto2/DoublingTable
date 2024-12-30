@@ -1,0 +1,22 @@
+{
+    "result":{
+        "item":"minecraft:dragon_egg"
+    },
+    "type":"forge:ore_shaped",
+    "pattern":[
+        "NDN",
+        "DED",
+        "NDN"
+    ],
+    "key":{
+        "D":{
+            "item":"minecraft:diamond_block"
+        },
+        "N":{
+            "item":"minecraft:nether_star"
+        },
+        "E":{
+            "item":"minecraft:egg"
+        }
+    }
+}
