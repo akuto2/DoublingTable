@@ -69,13 +69,13 @@ public class GuiDoublingFurnace extends AbstractContainerScreen<MenuDoublingFurn
 	@Override
 	protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
 		graphics.blit(TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
-		if (menu.isLit()) {
-			int litProgress = menu.getLitProgress();
+		if (furnace.isLit()) {
+			int litProgress = furnace.getBurnTimeRemainScaled(12);
 			graphics.blit(TEXTURE, leftPos + 56, topPos + 36 + 12 - litProgress, 176, 12 - litProgress, 14, litProgress + 1);
 		}
 		
-		int burnProgrees = menu.getBurnProgress();
-		graphics.blit(TEXTURE, leftPos + 76, topPos + 34, 176, 14, burnProgrees + 1, 16);
+		int burnProgrees = furnace.getCookProgressScaled(24);
+		graphics.blit(TEXTURE, leftPos + 79, topPos + 34, 176, 14, burnProgrees + 1, 16);
 	}
 	
 	@Override

@@ -10,7 +10,6 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.FurnaceResultSlot;
 import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.RecipeBookType;
@@ -26,7 +25,7 @@ public class MenuDoublingFurnace extends RecipeBookMenu<Container>{
 	public final BlockEntityDoublingFurnace furnace;
 	private final Level level;
 
-	protected MenuDoublingFurnace(MenuTypeRegistryObject<? extends AbstractContainerMenu> menu, int containerId, Inventory playerInventory, BlockEntityDoublingFurnace furnace) {
+	protected MenuDoublingFurnace(MenuTypeRegistryObject<? extends MenuDoublingFurnace> menu, int containerId, Inventory playerInventory, BlockEntityDoublingFurnace furnace) {
 		super(menu.get(), containerId);
 		this.level = playerInventory.player.level();
 		this.furnace = furnace;
@@ -44,6 +43,8 @@ public class MenuDoublingFurnace extends RecipeBookMenu<Container>{
 		for (int i = 0; i < 9; i++) {
 			addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
 		}
+		
+		addDataSlots(furnace.dataAccess);
 	}
 
 	@Override
@@ -153,25 +154,6 @@ public class MenuDoublingFurnace extends RecipeBookMenu<Container>{
 	
 	public boolean isFuel(ItemStack stack) {
 		return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
-	}
-	
-	public int getBurnProgress() {
-		int cookingTime = furnace.dataAccess.get(2);
-		int totalTime = furnace.dataAccess.get(3);
-		return cookingTime != 0 && totalTime != 0 ? totalTime * 24 / cookingTime : 0;
-	}
-	
-	public int getLitProgress() {
-		int duration = furnace.dataAccess.get(1);
-		if (duration == 0) {
-			duration = 200;
-		}
-		
-		return furnace.dataAccess.get(0) * 13 / duration;
-	}
-	
-	public boolean isLit() {
-		return furnace.dataAccess.get(0) > 0;
 	}
 	
 	// 以下それぞれの種類ごとのMenuType

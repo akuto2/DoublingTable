@@ -35,6 +35,8 @@ import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
@@ -101,7 +103,7 @@ public abstract class BlockEntityDoublingFurnace extends BaseContainerBlockEntit
 	/**
 	 * 燃焼中か
 	 */
-	private boolean isLit() {
+	public boolean isLit() {
 		return litTime > 0;
 	}
 	
@@ -139,6 +141,20 @@ public abstract class BlockEntityDoublingFurnace extends BaseContainerBlockEntit
 			compound.putInt(k.toString(), v);
 		});
 		tag.put("RecipeUsed", compound);
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	public int getCookProgressScaled(int value) {
+		return cookingProgrees != 0 && cookingTotalTime != 0 ? cookingProgrees * value / cookingTotalTime : 0;
+	}
+	
+	@OnlyIn(Dist.CLIENT)
+	public int getBurnTimeRemainScaled(int value) {
+		if (litDuration == 0) {
+			litDuration = 200;
+		}
+		
+		return litTime * value / litDuration;
 	}
 	
 	/**
@@ -196,7 +212,7 @@ public abstract class BlockEntityDoublingFurnace extends BaseContainerBlockEntit
 		}
 		
 		if (flag) {
-			blockEntity.setChanged();
+			setChanged(level, pos, state);
 		}
 	}
 	
@@ -326,9 +342,9 @@ public abstract class BlockEntityDoublingFurnace extends BaseContainerBlockEntit
 	public void setItem(int slot, ItemStack stack) {
 		ItemStack slotStack = items.get(slot);
 		boolean sameItem = !stack.isEmpty() && ItemStack.isSameItemSameTags(slotStack, stack);
-		items.set(slot, slotStack);
+		items.set(slot, stack);
 		if (stack.getCount() > getMaxStackSize()) {
-			stack.setCount(stack.getMaxStackSize());
+			stack.setCount(getMaxStackSize());
 		}
 		
 		// インプットスロットのアイテムが変わった場合は燃焼時間などをリセット
