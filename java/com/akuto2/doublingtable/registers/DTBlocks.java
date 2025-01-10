@@ -10,6 +10,7 @@ import com.akuto2.doublingtable.utils.enums.EnumFacilityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 
 public class DTBlocks {
@@ -34,6 +35,6 @@ public class DTBlocks {
 	}
 	
 	public static BlockRegistryObject<BlockDoublingFurnace, BlockItem> registerDoublingFurnace(EnumFacilityType type) {
-		return BLOCKS.register("doublingfurnace_" + type.toString(), () -> new BlockDoublingFurnace(type, Properties.of().mapColor(MapColor.STONE).strength(5.0f).sound(SoundType.STONE)));
+		return BLOCKS.register("doublingfurnace_" + type.toString(), () -> new BlockDoublingFurnace(type, Properties.of().mapColor(MapColor.STONE).strength(5.0f).sound(SoundType.STONE).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 14 : 0)));
 	}
 }

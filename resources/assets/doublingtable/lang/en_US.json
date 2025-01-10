@@ -6,5 +6,12 @@
 	"block.doublingtable.doublingtable_diamond": "Diamond Doubling Table",
 	"block.doublingtable.doublingtable_emerald": "Emerald Doubling Table", 
 	
+	"block.doublingtable.doublingfurnace_wood": "Wooden Doubling Furnace",
+	"block.doublingtable.doublingfurnace_stone": "Stone Doubling Furnace",
+	"block.doublingtable.doublingfurnace_iron": "Iron Doubling Furnace",
+	"block.doublingtable.doublingfurnace_gold": "Gold Doubling Furnace",
+	"block.doublingtable.doublingfurnace_diamond": "Diamond Doubling Furnace",
+	"block.doublingtable.doublingfurnace_emerald": "Emerald Doubling Furnace",
+	
 	"creativetab.doublingtable": "DoublingTable"
 }

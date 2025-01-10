@@ -1,12 +1,17 @@
 package com.akuto2.doublingtable.blockentities;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.annotation.Nullable;
 
 import com.akuto2.akutolib.registration.register.BlockEntityRegistryObject;
 import com.akuto2.doublingtable.menu.MenuDoublingFurnace;
 import com.akuto2.doublingtable.registers.DTBlockEntities;
 import com.akuto2.doublingtable.utils.enums.EnumFacilityType;
+import com.google.common.collect.Lists;
 
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,10 +19,13 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
@@ -27,6 +35,7 @@ import net.minecraft.world.inventory.RecipeHolder;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
@@ -35,6 +44,7 @@ import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
@@ -300,6 +310,7 @@ public abstract class BlockEntityDoublingFurnace extends BaseContainerBlockEntit
 			items.set(1, new ItemStack(Items.WATER_BUCKET));
 		}
 		
+		setRecipeUsed(level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, this, level).orElse(null));
 		items.get(0).shrink(1);
 	}
 
@@ -373,7 +384,7 @@ public abstract class BlockEntityDoublingFurnace extends BaseContainerBlockEntit
 	}
 
 	@Override
-	public void setRecipeUsed(Recipe<?> recipe) {
+	public void setRecipeUsed(@Nullable Recipe<?> recipe) {
 		if (recipe != null) {
 			ResourceLocation resourceLocation = recipe.getId();
 			recipeUsed.addTo(resourceLocation, 1);
@@ -425,6 +436,42 @@ public abstract class BlockEntityDoublingFurnace extends BaseContainerBlockEntit
 	
 	public EnumFacilityType getFacilityType() {
 		return type;
+	}
+	
+	public void onTakeResult(ServerPlayer player) {
+		List<Recipe<?>> list = getAwardAndPopExperience(player.serverLevel(), player.position());
+		player.awardRecipes(list);
+		
+		for(Recipe<?> recipe : list) {
+			if (recipe != null) {
+				player.triggerRecipeCrafted(recipe, items);
+			}
+		}
+		
+		recipeUsed.clear();
+	}
+	
+	public List<Recipe<?>> getAwardAndPopExperience(ServerLevel level, Vec3 popVec) {
+		List<Recipe<?>> list = Lists.newArrayList();
+		
+		for(Object2IntMap.Entry<ResourceLocation> entry : recipeUsed.object2IntEntrySet()) {
+			level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
+				list.add(recipe);
+				createExperience(level, popVec, entry.getIntValue(), ((AbstractCookingRecipe)recipe).getExperience());
+			});
+		}
+		
+		return list;
+	}
+	
+	private void createExperience(ServerLevel level, Vec3 popVec, int index, float experience) {
+		int i = Mth.floor((float)index * experience) * type.getTimes();
+		float f = Mth.frac((float)index * experience);
+		if (f != 0.0F && Math.random() < (double)f) {
+			++i;
+		}
+
+		ExperienceOrb.award(level, popVec, i);
 	}
 
 	public static class Wood extends BlockEntityDoublingFurnace {

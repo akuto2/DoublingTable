@@ -1,8 +1,15 @@
 {
-	"block.doublingtable.doublingtable_wood": "木の倍化テーブル",
-	"block.doublingtable.doublingtable_stone": "石の倍化テーブル",
-	"block.doublingtable.doublingtable_iron": "鉄の倍化テーブル",
-	"block.doublingtable.doublingtable_gold": "金の倍化テーブル",
-	"block.doublingtable.doublingtable_diamond": "ダイアモンドの倍化テーブル",
-	"block.doublingtable.doublingtable_emerald": "エメラルドの倍化テーブル" 
+	"block.doublingtable.doublingtable_wood": "木の倍加テーブル",
+	"block.doublingtable.doublingtable_stone": "石の倍加テーブル",
+	"block.doublingtable.doublingtable_iron": "鉄の倍加テーブル",
+	"block.doublingtable.doublingtable_gold": "金の倍加テーブル",
+	"block.doublingtable.doublingtable_diamond": "ダイアモンドの倍加テーブル",
+	"block.doublingtable.doublingtable_emerald": "エメラルドの倍加テーブル",
+	
+	"block.doublingtable.doublingfurnace_wood": "木の倍加かまど",
+	"block.doublingtable.doublingfurnace_stone": "石の倍加かまど",
+	"block.doublingtable.doublingfurnace_iron": "鉄の倍加かまど",
+	"block.doublingtable.doublingfurnace_gold": "金の倍加かまど",
+	"block.doublingtable.doublingfurnace_diamond": "ダイヤモンド木の倍加かまど",
+	"block.doublingtable.doublingfurnace_emerald": "エメラルドの倍加かまど"
 }

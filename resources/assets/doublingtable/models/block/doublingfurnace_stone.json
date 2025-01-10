@@ -1,7 +1,7 @@
 {
     "parent":"block/cube_top",
     "textures":{
-        "top":"doublingtable:blocks/doublingfurnace_stone_front_off",
-        "side":"doublingtable:blocks/doublingfurnace_stone"
+        "top":"doublingtable:block/doublingfurnace_stone_front_off",
+        "side":"doublingtable:block/doublingfurnace_stone"
     }
 }

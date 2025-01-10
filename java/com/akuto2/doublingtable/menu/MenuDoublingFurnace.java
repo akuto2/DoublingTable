@@ -3,6 +3,7 @@ package com.akuto2.doublingtable.menu;
 import com.akuto2.akutolib.registration.object.MenuTypeRegistryObject;
 import com.akuto2.doublingtable.blockentities.BlockEntityDoublingFurnace;
 import com.akuto2.doublingtable.menu.slots.SlotDoublingFurnaceFuel;
+import com.akuto2.doublingtable.menu.slots.SlotDoublingFurnaceResult;
 import com.akuto2.doublingtable.registers.DTMenus;
 
 import net.minecraft.world.Container;
@@ -10,7 +11,6 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
-import net.minecraft.world.inventory.FurnaceResultSlot;
 import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.Slot;
@@ -32,7 +32,7 @@ public class MenuDoublingFurnace extends RecipeBookMenu<Container>{
 		
 		addSlot(new Slot(furnace, 0, 56, 17));
 		addSlot(new SlotDoublingFurnaceFuel(this, furnace, 1, 56, 53));
-		addSlot(new FurnaceResultSlot(playerInventory.player, furnace, 2, 116, 35));
+		addSlot(new SlotDoublingFurnaceResult(playerInventory.player, furnace, 2, 116, 35));
 		
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {

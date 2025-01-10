@@ -7,7 +7,9 @@ import com.akuto2.doublingtable.registers.DTBlockEntities;
 import com.akuto2.doublingtable.utils.enums.EnumFacilityType;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 
 public class BlockDoublingFurnace extends AbstractFurnaceBlock {
@@ -70,6 +73,7 @@ public class BlockDoublingFurnace extends AbstractFurnaceBlock {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntity) {
 		BlockEntityRegistryObject<? extends BlockEntityDoublingFurnace> furnace = getBlockEntityRegistryObject();
@@ -77,5 +81,24 @@ public class BlockDoublingFurnace extends AbstractFurnaceBlock {
 			return (BlockEntityTicker<T>)furnace.getTicker(level.isClientSide());
 		}
 		return null;
+	}
+	
+	@Override
+	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+		if (!state.is(newState.getBlock())) {
+			BlockEntityDoublingFurnace furnace = WorldHelper.getBlockEntity(BlockEntityDoublingFurnace.class, level, pos);
+			if (furnace != null) {
+				if (level instanceof ServerLevel) {
+					Containers.dropContents(level, pos, furnace);
+					furnace.getAwardAndPopExperience((ServerLevel)level, Vec3.atCenterOf(pos));
+				}
+				
+				level.updateNeighbourForOutputSignal(pos, this);
+			}
+		}
+		
+		if (state.hasBlockEntity() && (!state.is(newState.getBlock()) || !newState.hasBlockEntity())) {
+			level.removeBlockEntity(pos);
+		}
 	}
 }

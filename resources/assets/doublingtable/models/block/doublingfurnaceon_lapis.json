@@ -1,7 +1,0 @@
-{
-    "parent":"block/cube_top",
-    "textures":{
-        "top":"doublingtable:blocks/doublingfurnace_lapis_front_on",
-        "side":"doublingtable:blocks/doublingfurnace_lapis"
-    }
-}

@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"lit=false": {
+			"model": "doublingtable:block/doublingfurnace_gold"
+		},
+		"lit=true": {
+			"model": "doublingtable:block/doublingfurnace_on_gold"
+		}
+	}
+}
