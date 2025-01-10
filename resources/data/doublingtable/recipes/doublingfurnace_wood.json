@@ -1,9 +1,9 @@
 {
     "result":{
-        "item":"doublingtable:doublingfurnace",
-        "data":0
+        "item":"doublingtable:doublingfurnace_wood"
     },
-    "type":"forge:ore_shaped",
+    "category":"misc",
+    "type":"minecraft:crafting_shaped",
     "pattern":[
         "WWW",
         "WCW",
@@ -11,7 +11,7 @@
     ],
     "key":{
         "W":{
-            "item":"#WOODPLANK"
+            "tag":"minecraft:planks"
         },
         "C":{
             "item":"minecraft:furnace"

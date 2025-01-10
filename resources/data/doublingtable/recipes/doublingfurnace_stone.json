@@ -1,21 +1,25 @@
 {
     "result":{
-        "item":"doublingtable:doublingfurnace",
-        "data":1
+        "item":"doublingtable:doublingfurnace_stone"
     },
-    "type":"forge:ore_shaped",
+    "category":"misc",
+    "type":"minecraft:crafting_shaped",
     "pattern":[
         "SSS",
         "SCS",
         "SSS"
     ],
     "key":{
-        "S":{
-            "item":"#COBBLESTONE"
-        },
+        "S":[
+       		{
+            	"tag":"forge:cobblestone/normal"
+            },
+            {
+            	"tag":"forge:cobblestone/deepslate"
+            }
+        ],
         "C":{
-            "item":"doublingtable:doublingfurnace",
-            "data":0
+            "item":"doublingtable:doublingfurnace_wood"
         }
     }
 }

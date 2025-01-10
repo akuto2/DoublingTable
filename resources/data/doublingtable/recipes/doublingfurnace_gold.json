@@ -1,9 +1,9 @@
 {
     "result":{
-        "item":"doublingtable:doublingfurnace",
-        "data":3
+        "item":"doublingtable:doublingfurnace_gold"
     },
-    "type":"forge:ore_shaped",
+    "category":"misc",
+    "type":"minecraft:crafting_shaped",
     "pattern":[
         "GGG",
         "GCG",
@@ -11,11 +11,10 @@
     ],
     "key":{
         "G":{
-            "item":"#GOLDINGOT"
+            "tag":"forge:ingots/gold"
         },
         "C":{
-            "item":"doublingtable:doublingfurnace",
-            "data":2
+            "item":"doublingtable:doublingfurnace_iron"
         }
     }
 }

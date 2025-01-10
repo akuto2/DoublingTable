@@ -1,9 +1,9 @@
 {
     "result":{
-        "item":"doublingtable:doublingfurnace",
-        "data":4
+        "item":"doublingtable:doublingfurnace_diamond"
     },
-    "type":"forge:ore_shaped",
+    "category":"misc",
+    "type":"minecraft:crafting_shaped",
     "pattern":[
         "DDD",
         "DCD",
@@ -11,11 +11,10 @@
     ],
     "key":{
         "D":{
-            "item":"#GEMDIAMOND"
+            "tag":"forge:gems/diamond"
         },
         "C":{
-            "item":"doublingtable:doublingfurnace",
-            "data":3
+            "item":"doublingtable:doublingfurnace_gold"
         }
     }
 }

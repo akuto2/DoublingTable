@@ -1,9 +1,9 @@
 {
     "result":{
-        "item":"doublingtable:doublingfurnace",
-        "data":5
+        "item":"doublingtable:doublingfurnace_emerald"
     },
-    "type":"forge:ore_shaped",
+    "category":"misc",
+    "type":"minecraft:crafting_shaped",
     "pattern":[
         "EEE",
         "ECE",
@@ -11,11 +11,10 @@
     ],
     "key":{
         "E":{
-            "item":"#GEMEMERALD"
+            "tag":"forge:gems/emerald"
         },
         "C":{
-            "item":"doublingtable:doublingfurnace",
-            "data":4
+            "item":"doublingtable:doublingfurnace_diamond"
         }
     }
 }

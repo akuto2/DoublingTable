@@ -1,9 +1,9 @@
 {
     "result":{
-        "item":"doublingtable:doublingfurnace",
-        "data":2
+        "item":"doublingtable:doublingfurnace_iron"
     },
-    "type":"forge:ore_shaped",
+    "category":"misc",
+    "type":"minecraft:crafting_shaped",
     "pattern":[
         "III",
         "ICI",
@@ -11,11 +11,10 @@
     ],
     "key":{
         "I":{
-            "item":"#IRONINGOT"
+            "tag":"forge:ingots/iron"
         },
         "C":{
-            "item":"doublingtable:doublingfurnace",
-            "data":1
+            "item":"doublingtable:doublingfurnace_stone"
         }
     }
 }
